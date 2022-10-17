@@ -48,6 +48,7 @@ module.exports = (sequelize) => {
       status: {
         type: dataTypes.ENUM("true", "false"),
         allowNull: false,
+        defaultValue: "false",
       },
     },
     {
