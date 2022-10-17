@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router(); //express.Router('')
-const { Pokemon, Type } = require("../db");
+const { Invitados, Type } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
 
