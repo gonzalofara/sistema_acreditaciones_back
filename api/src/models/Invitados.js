@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
     "Invitados",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
@@ -46,11 +46,12 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       status: {
-        type: DataTypes.ENUM("true", "false"),
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "false",
+        defaultValue: "",
       },
     },
+
     {
       timestamps: false,
     }
