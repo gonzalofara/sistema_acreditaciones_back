@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router(); //express.Router('')
-const { Invitados, Type } = require("../db");
+const { Invitados, Evento } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
 
