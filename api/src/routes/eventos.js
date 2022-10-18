@@ -5,41 +5,58 @@ const axios = require("axios");
 
 router.get("/", async (req, res) => {
   try {
-    const apiPromise = await axios.get("https://pokeapi.co/api/v2/type");
-    let typesFromApi = apiPromise.data.results.map((t) => t.name).sort(); //TIPOS POR ORDEN ALFABETICO
-    console.log(typesFromApi);
-    const pokeTypes = await Type.findAll({ attributes: ["id", "name"] });
-
-    if (pokeTypes.length > 0) {
-      return res.status(200).json(pokeTypes);
-    } else {
-      typesFromApi.forEach((t) => {
-        Type.bulkCreate([{ name: t }]);
-      });
-
-      const typesAdded = await Type.findAll({ attributes: ["id", "name"] });
-      return res.status(200).json(typesAdded);
-    }
+    let eventos = await Evento.findAll();
+    res.status(200).json(eventos);
   } catch (error) {
-    res.status(404).send("No se encontraron Tipos de Pokemones");
+    return res.status(404).send(error.message);
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const evento = await Evento.findOne({
+      where: {
+        id: id,
+      },
+      include: {
+        model: Invitados,
+        attributes: ["first_name", "last_name", "id", "list_id", "company"],
+      },
+    });
+
+    if (evento) return res.status(200).json(evento);
+  } catch (error) {
+    return res.status(404).send("No se encontró un Evento con ese ID");
   }
 });
 
 router.post("/", async (req, res) => {
   try {
-    const { nombre,cliente,fechaI,fechaFin,direccion } = req.body;
-    if (!nombre||!cliente) res.status(400).send("se requieren mas datos");
+    const { nombre, cliente, fechaI, fechaFin, direccion } = req.body;
+    if (!nombre || !cliente) res.status(400).send("se requieren mas datos");
 
     let nuevoEvento = await Evento.create({
-      nombre:nombre,
-      cliente:cliente,
-      fechaI:fechaI,
-      fechaFin:fechaFin,
-      direccion :direccion,
+      nombre: nombre,
+      cliente: cliente,
+      fechaI: fechaI,
+      fechaFin: fechaFin,
+      direccion: direccion,
     });
     res.status(200).json(nuevoEvento);
   } catch (error) {
     res.status(400).json(error.message);
+  }
+});
+
+router.delete("/delete/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await Evento.destroy({ where: { id: id } });
+    return res.status(200).send("Evento eliminado correctamente");
+  } catch (error) {
+    return res.status(404).send("No se encontró un Evento con ese ID");
   }
 });
 
