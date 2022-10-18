@@ -4,9 +4,9 @@ const { Invitados, Evento } = require("../db");
 const axios = require("axios");
 const { Op } = require("sequelize");
 
-router.post("/", async (req, res) => {
-  console.log(req.body);
-
+router.post("/:id", async (req, res) => {
+  let {id}=req.params;
+  
   try {
     let nuevaLista = req.body.map((i) => {
       return {
@@ -30,8 +30,11 @@ router.post("/", async (req, res) => {
     //   types.map((t) => Type.findOne({ where: { name: t } }))
     // );
 
-    // newPokemon.setTypes(assignTypes);
-
+    let findEvent=await Evento.findOne({where:{id:id}})
+    console.log(findEvent.dataValues)
+     nuevaLista.forEach(invitado => {
+       invitado.addEventos(findEvent)  
+    });
     return res.status(201).json(nuevaLista);
   } catch (error) {
     return res.status(400).send(error.message);

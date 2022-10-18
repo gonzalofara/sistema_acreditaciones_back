@@ -12,9 +12,22 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      fechaI:{
+        type:DataTypes.DATEONLY,
+        allowNull:false,
+      },
+      fechaF:{
+        type:DataTypes.STRING,
+        allowNull:true,
+      },
+      direccion:{
+        type:DataTypes.STRING,
+        allowNull:true,
+      }
+      
     },
     {
-      timestamps: false,
+      timestamps: true,
     }
   );
 };

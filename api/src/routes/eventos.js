@@ -25,22 +25,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/typecreate", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const { name } = req.body;
-    if (!name) res.status(400).send("Type Name is required");
+    const { nombre,cliente,fechaI,fechaFin,direccion } = req.body;
+    if (!nombre||!cliente) res.status(400).send("se requieren mas datos");
 
-    let exists = await Type.findOne({
-      where: { name: name },
+    let nuevoEvento = await Evento.create({
+      nombre:nombre,
+      cliente:cliente,
+      fechaI:fechaI,
+      fechaFin:fechaFin,
+      direccion :direccion,
     });
-
-    if (exists) res.status(400).send("Pokemon already exists");
-
-    let newType = await Type.create({
-      name: name,
-    });
-
-    if (newType) res.status(200).json(newType);
+    res.status(200).json(nuevoEvento);
   } catch (error) {
     res.status(400).json(error.message);
   }
