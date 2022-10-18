@@ -5,8 +5,8 @@ const axios = require("axios");
 const { Op } = require("sequelize");
 
 router.post("/:id", async (req, res) => {
-  let {id}=req.params;
-  
+  let { id } = req.params;
+
   try {
     let nuevaLista = req.body.map((i) => {
       return {
@@ -24,18 +24,16 @@ router.post("/:id", async (req, res) => {
         properties: i.properties,
       };
     });
-    await Invitados.bulkCreate(nuevaLista);
-
+    let instancia = await Invitados.bulkCreate(nuevaLista);
+    let evento = await Evento.findOne({ where: { id: id } });
+    console.log("INVITADOSSS", instancia);
+    console.log("EVENTOOO", evento);
+    instancia.forEach(async (i) => await i.addEvento(evento.id));
     // let assignTypes = await Promise.all(
     //   types.map((t) => Type.findOne({ where: { name: t } }))
     // );
 
-    let findEvent=await Evento.findOne({where:{id:id}})
-    console.log(findEvent.dataValues)
-     nuevaLista.forEach(invitado => {
-       invitado.addEventos(findEvent)  
-    });
-    return res.status(201).json(nuevaLista);
+    return res.status(201).json(instancia);
   } catch (error) {
     return res.status(400).send(error.message);
   }
