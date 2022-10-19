@@ -4,11 +4,11 @@ const LandingPage = () => {
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg text-center">
-        <h1 className="text-2xl font-bold sm:text-3xl">Get started today!</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">Acreditaciones</h1>
 
         <p className="mt-4 text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-          nulla eaque error neque ipsa culpa autem, at itaque nostrum!
+          Inicia sesión para acceder al panel principal y administrar tus
+          eventos!
         </p>
       </div>
 
@@ -22,7 +22,7 @@ const LandingPage = () => {
             <input
               type="email"
               className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-              placeholder="Enter email"
+              placeholder="Email"
             />
 
             <span className="absolute inset-y-0 right-4 inline-flex items-center">
@@ -46,13 +46,13 @@ const LandingPage = () => {
 
         <div>
           <label for="password" className="sr-only">
-            Password
+            Contraseña
           </label>
           <div className="relative">
             <input
               type="password"
               className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-              placeholder="Enter password"
+              placeholder="Contraseña"
             />
 
             <span className="absolute inset-y-0 right-4 inline-flex items-center">
@@ -80,20 +80,13 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-500">
-            No account?
-            <a className="underline" href="">
-              Sign up
-            </a>
-          </p>
-
-          <button
-            type="submit"
-            className="ml-3 inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+        <div className="flex items-center justify-center">
+          <div
+            className="ml-3 inline-block rounded-lg bg-blue-500 px-20 py-3 text-sm font-medium text-white cursor-pointer"
+            onClick={() => location.assign("/general")}
           >
-            Sign in
-          </button>
+            Ingresar
+          </div>
         </div>
       </form>
     </div>
