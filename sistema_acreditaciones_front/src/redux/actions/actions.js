@@ -3,7 +3,7 @@ import axios from "axios";
 export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
 export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL";
 export const RESET_EVENT_DETAIL = "RESET_EVENT_DETAIL";
-
+export const POST_EVENT= "POST_EVENT";
 export function getAllEvents() {
   return async function (dispatch) {
     try {
@@ -36,4 +36,18 @@ export function resetEventDetail() {
       type: RESET_EVENT_DETAIL,
     });
   };
+}
+
+export function postEvents(evento){
+  console.log(evento)
+  return async function () {
+    try {
+      return await axios.post("http://localhost:3001/eventos",evento);
+     
+    } catch (error) {
+      console.log(error.message)
+    }    
+
+ 
+  }
 }

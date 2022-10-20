@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       fechaInicio: {
-        type: DataTypes.DATEONLY,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       fechaFin: {

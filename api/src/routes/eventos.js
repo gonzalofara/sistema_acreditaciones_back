@@ -33,6 +33,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
+    console.log("estoy en las rutasss")
     const { nombre, cliente, fechaInicio, fechaFin, direccion } = req.body;
     if (!nombre || !cliente) res.status(400).send("se requieren mas datos");
 
