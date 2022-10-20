@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventDetail, resetEventDetail } from "../../redux/actions/actions";
+import { getEventDetail } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { FaUsers, FaSearch } from "react-icons/fa";
@@ -21,14 +21,17 @@ const Evento = (props) => {
     <section>
       <SideBar />
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-semibold sm:text-4xl text-start grid">
+        <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid">
           {evento?.nombre}
 
           <span className="text-lg font-light text-gray-600">
             {evento?.cliente}
           </span>
         </h2>
-        <nav aria-label="Breadcrumb" className="flex mt-4">
+        <nav
+          aria-label="Breadcrumb"
+          className="flex mt-4 justify-center md:justify-start"
+        >
           <ol role="list" className="flex gap-2 overflow-hidden text-gray-700">
             <li className="flex items-center">
               <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900">
