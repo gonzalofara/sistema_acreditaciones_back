@@ -22,7 +22,7 @@ const Evento = (props) => {
     <section>
       <SideBar />
 
-      <Aside />
+      <Aside id={id} />
       <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid">
           {evento?.nombre}
