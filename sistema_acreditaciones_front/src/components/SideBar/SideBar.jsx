@@ -1,5 +1,5 @@
 import React from "react";
-import { FcOvertime } from "react-icons/fc";
+import { FaIdCardAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 const SideBar = () => {
   return (
@@ -18,10 +18,13 @@ const SideBar = () => {
          shadow-sm
        "
       >
-        <div>
+        <div className="flex items-center content-center gap-1">
           <a href="/general">
-            <FcOvertime size={30} />
+            <FaIdCardAlt size={20} fill="#7e7e7e" />
           </a>
+          <span className="text-gray-900 text-sm font-extrabold">
+            Acreditaciones
+          </span>
         </div>
 
         <div className="cursor-pointer md:hidden block">
@@ -42,26 +45,32 @@ const SideBar = () => {
           >
             <li>
               <a
-                className="md:p-4 py-2 block hover:text-purple-400"
+                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
                 href="/eventos"
               >
                 Eventos
               </a>
             </li>
             <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
+              <a
+                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
+                href="#"
+              >
                 Archivo
               </a>
             </li>
             <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
+              <a
+                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
+                href="#"
+              >
                 Invitados
               </a>
             </li>
 
             <li>
               <a
-                className="md:p-4 py-2 block hover:text-purple-400 text-purple-500"
+                className="md:p-4 py-2 block hover:text-gray-600 text-teal-600"
                 href="#"
               >
                 Salir

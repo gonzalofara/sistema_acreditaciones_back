@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEventDetail } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
+import Aside from "../Aside/Aside";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { FaUsers, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -20,7 +21,9 @@ const Evento = (props) => {
   return (
     <section>
       <SideBar />
-      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+
+      <Aside />
+      <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid">
           {evento?.nombre}
 
