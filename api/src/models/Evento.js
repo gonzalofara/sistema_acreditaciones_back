@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      fechaI: {
+      fechaInicio: {
         type: DataTypes.DATEONLY,
         allowNull: false,
       },
-      fechaF: {
+      fechaFin: {
         type: DataTypes.STRING,
         allowNull: true,
       },
