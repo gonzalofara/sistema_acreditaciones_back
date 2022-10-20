@@ -31,7 +31,7 @@ const CrearLista = (props) => {
   };
   console.log("LA LISTA", lista);
   const handleSubmit = () => {
-    if (lista !== []) {
+    if (lista.length > 0) {
       dispatch(createList(id, lista));
       setLista([]);
       alert("Lista creada correctamente");
@@ -50,7 +50,7 @@ const CrearLista = (props) => {
           id="upload"
           onChange={readUploadFile}
         />
-        <button className="bg-indigo-600" onClick={handleSubmit}>
+        <button className="bg-indigo-600" onClick={() => handleSubmit()}>
           Crear Lista
         </button>
       </form>

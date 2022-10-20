@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getEventDetail } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
@@ -13,10 +13,13 @@ const Evento = (props) => {
   const dispatch = useDispatch();
   const evento = useSelector((state) => state.evento);
   console.log(id);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     dispatch(getEventDetail(id));
   }, [dispatch]);
+
+  const handleChange = (e) => {};
 
   return (
     <section>
@@ -79,6 +82,8 @@ const Evento = (props) => {
               id="input-group-1"
               className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-50 block w-full pl-10 p-2.5 py-4"
               placeholder="Buscar invitados"
+              value={input}
+              onChange={handleChange}
             />
           </div>
         </div>
