@@ -46,8 +46,16 @@ export function postEvents(evento){
      
     } catch (error) {
       console.log(error.message)
-    }    
-
- 
+    }  
   }
 }
+export function createList(id, lista) {
+  try {
+    return async function (dispatch) {
+      return await axios.post(`http://localhost:3001/invitados/${id}`, lista);
+    };
+  } catch (error) {
+    return "Ha ocurrido un error, intenta nuevamente.";
+  }
+}
+  

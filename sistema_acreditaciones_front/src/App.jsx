@@ -4,6 +4,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Eventos from "./components/Eventos/Eventos";
 import Evento from "./components/Evento/Evento";
+import CrearLista from "./components/CrearLista/CrearLista";
 import NuevoEvento from "./components/NuevoEvento/NuevoEvento"
 import "./App.css";
 
@@ -16,7 +17,12 @@ function App() {
           <Route exact path="/general" component={Dashboard} />
           <Route exact path="/eventos" component={Eventos} />
           <Route exact path="/eventos/:id" component={Evento} />
-          <Route exact path="/evento/crear" component={NuevoEvento}/>
+          <Route
+            exact
+            path="/eventos/:id/listas/crear"
+            component={CrearLista}
+          />
+                   <Route exact path="/evento/crear" component={NuevoEvento}/>
         </Switch>
       </div>
     </BrowserRouter>
