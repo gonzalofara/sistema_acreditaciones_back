@@ -33,13 +33,14 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { nombre, cliente, fechaI, fechaFin, direccion } = req.body;
+    console.log("estoy en las rutasss")
+    const { nombre, cliente, fechaInicio, fechaFin, direccion } = req.body;
     if (!nombre || !cliente) res.status(400).send("se requieren mas datos");
 
     let nuevoEvento = await Evento.create({
       nombre: nombre,
       cliente: cliente,
-      fechaI: fechaI,
+      fechaInicio: fechaInicio,
       fechaFin: fechaFin,
       direccion: direccion,
     });

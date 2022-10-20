@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Eventos from "./components/Eventos/Eventos";
 import Evento from "./components/Evento/Evento";
 import CrearLista from "./components/CrearLista/CrearLista";
+import NuevoEvento from "./components/NuevoEvento/NuevoEvento"
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             path="/eventos/:id/listas/crear"
             component={CrearLista}
           />
+                   <Route exact path="/evento/crear" component={NuevoEvento}/>
         </Switch>
       </div>
     </BrowserRouter>
