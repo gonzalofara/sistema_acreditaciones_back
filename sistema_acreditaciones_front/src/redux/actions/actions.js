@@ -42,10 +42,11 @@ export function postEvents(evento){
   console.log(evento)
   return async function () {
     try {
-      return await axios.post("http://localhost:3001/eventos",evento);
-     
+      var json= await axios.post("http://localhost:3001/eventos",evento);
+      console.log(json.data)
+      return
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
     }  
   }
 }
