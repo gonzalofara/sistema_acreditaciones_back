@@ -5,7 +5,7 @@ const axios = require("axios");
 
 router.get("/", async (req, res) => {
   try {
-    let eventos = await Evento.findAll();
+    let eventos = await Evento.findAll({ include: Invitados });
     res.status(200).json(eventos);
   } catch (error) {
     return res.status(404).send(error.message);
