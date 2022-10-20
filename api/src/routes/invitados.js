@@ -40,19 +40,24 @@ router.post("/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const {id}=req.params;
+  const { id } = req.params;
   try {
-    if(id){
-      console.log("entre al iffffff")
-      let invitado = await Invitados.findOne({where: {id: id},
-      include:{
-        model:Evento,
-        attributes:["nombre"]
-      }})
+    if (!id) {
+      console.log("aca");
+      let invitadosDb = await Invitados.findAll();
+
+      return res.status(200).json(invitadosDb);
+    } else if (id) {
+      console.log("entre al iffffff");
+      let invitado = await Invitados.findOne({
+        where: { id: id },
+        include: {
+          model: Evento,
+          attributes: ["nombre"],
+        },
+      });
       return res.status(200).json(invitado);
     }
-    let invitadosDb = await Invitados.findAll();
-    res.status(200).json(invitadosDb);
   } catch (error) {
     return res.status(404).send(error.message);
   }
@@ -117,14 +122,13 @@ router.get("/:id", async (req, res) => {
 //   }
 // });
 
-
 router.delete("/delete/:id", async (req, res) => {
-  console.log("ESTOYY EN EL DELETEEEEEEE")
+  console.log("ESTOYY EN EL DELETEEEEEEE");
   const { id } = req.params;
-  console.log(id)
+  console.log(id);
   try {
     await Invitados.destroy({ where: { id: id } });
-    res.status(200).send("Invitado borrado con exito")
+    res.status(200).send("Invitado borrado con exito");
   } catch (error) {
     res.status(400).send(error.message);
   }
