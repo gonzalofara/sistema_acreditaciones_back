@@ -43,16 +43,26 @@ const CrearLista = (props) => {
       <h1>Crear Lista</h1>
 
       <form>
-        <label htmlFor="upload">Upload File</label>
+        <label
+          class="block mb-2 text-sm font-medium text-gray-900"
+          htmlFor="upload"
+        >
+          Upload file
+        </label>
         <input
+          class="block w-9/12 mx-auto md:w-1/2 md:mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none mb-4"
+          id="upload"
           type="file"
           name="upload"
-          id="upload"
           onChange={readUploadFile}
         />
-        <button className="bg-indigo-600" onClick={() => handleSubmit()}>
+
+        <p
+          className=" w-1/4 sm:w-1/6 py-2 text-gray-400 hover:text-gray-100 mx-auto cursor-pointer rounded bg-teal-800 hover:bg-teal-600"
+          onClick={() => handleSubmit()}
+        >
           Crear Lista
-        </button>
+        </p>
       </form>
     </div>
   );
