@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventDetail } from "../../redux/actions/actions";
+import { getEventDetail, resetEventDetail } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { FaUsers, FaSearch } from "react-icons/fa";
@@ -57,7 +57,7 @@ const Evento = (props) => {
               <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
 
               <p className="flex h-6 items-center bg-teal-500 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100">
-                {evento?.Invitados.length}
+                {evento?.Invitados?.length}
               </p>
             </li>
           </ol>

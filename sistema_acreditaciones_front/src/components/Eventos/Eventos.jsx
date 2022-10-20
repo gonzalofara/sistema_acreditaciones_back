@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllEvents } from "../../redux/actions/actions";
+import { getAllEvents, resetEventDetail } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ const Eventos = () => {
 
   useEffect(() => {
     dispatch(getAllEvents());
+    dispatch(resetEventDetail());
   }, [dispatch]);
 
   return (
