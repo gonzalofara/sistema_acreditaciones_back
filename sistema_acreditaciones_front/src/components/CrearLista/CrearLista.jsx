@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import * as xlsx from "xlsx";
 import { createList } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 const CrearLista = (props) => {
   const id = props.match.params.id;
   console.log(id);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [lista, setLista] = useState([]);
   const readUploadFile = (e) => {
     if (e.target.files) {
@@ -22,15 +25,19 @@ const CrearLista = (props) => {
         console.log(json);
         json.length !== 0 && setLista(json);
       };
-      console.log("LA LISTA", lista);
-      if (lista !== [] && typeof lista[0].id === "number") {
-        console.log(lista);
-        dispatch(createList(id, lista));
-        reader.readAsArrayBuffer(e.target.files[0]);
-      }
+
+      reader.readAsArrayBuffer(e.target.files[0]);
     }
   };
-
+  console.log("LA LISTA", lista);
+  const handleSubmit = () => {
+    if (lista !== []) {
+      dispatch(createList(id, lista));
+      setLista([]);
+      alert("Lista creada correctamente");
+      history.push("/eventos");
+    }
+  };
   return (
     <div>
       <h1>Crear Lista</h1>
@@ -43,6 +50,9 @@ const CrearLista = (props) => {
           id="upload"
           onChange={readUploadFile}
         />
+        <button className="bg-indigo-600" onClick={handleSubmit}>
+          Crear Lista
+        </button>
       </form>
     </div>
   );
