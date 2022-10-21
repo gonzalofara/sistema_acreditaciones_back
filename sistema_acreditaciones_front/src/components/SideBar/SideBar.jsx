@@ -1,6 +1,6 @@
 import React from "react";
-import { FaIdCardAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import logo from "../../assets/magnetica_rayo.png";
 const SideBar = () => {
   return (
     <header>
@@ -20,7 +20,7 @@ const SideBar = () => {
       >
         <div className="flex items-center content-center gap-1">
           <a href="/general">
-            <FaIdCardAlt size={20} fill="#7e7e7e" />
+            <img src={logo} className="w-[40px] h-[40px]" />
           </a>
           <span className="text-gray-900 text-sm font-extrabold">
             Acreditaciones
