@@ -109,7 +109,7 @@ const NuevoEvento = () => {
               placeholder="Direccion"
             />
           </div>
-          <div className="flex gap-4 justify-center items-center">
+          <div className="flex gap-4 justify-start items-center">
             <button className="bg-teal-500 mt-2 px-6 text-gray-200 hover:bg-teal-600 hover:text-gray-50">
               Crear
             </button>
