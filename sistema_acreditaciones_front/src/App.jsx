@@ -8,6 +8,7 @@ import CrearLista from "./components/CrearLista/CrearLista";
 import NuevoEvento from "./components/NuevoEvento/NuevoEvento";
 import Invitados from "./components/Invitados/Invitados";
 import Invitado from "./components/Invitado/Invitado";
+import Archivo from "./components/Archivo/Archivo";
 import "./App.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             component={CrearLista}
           />
           <Route exact path="/evento/crear" component={NuevoEvento} />
+          <Route exact path="/archivo" component={Archivo} />
         </Switch>
       </div>
     </BrowserRouter>

@@ -4,18 +4,17 @@ import { Link } from "react-router-dom";
 import { FaRegCalendarAlt, FaClipboardList } from "react-icons/fa";
 import { useSelector } from "react-redux";
 const Aside = ({ id }) => {
-  console.log(id);
   const event = useSelector((state) => state.evento);
   return (
     <div className="w-60 invisible md:visible md:h-full md:bg-gray-100 md:px-1 absolute">
       <ul className="relative py-4">
-        <li className="relative grid text-left">
+        <li className={event?.nombre ? "relative grid text-left" : "hidden"}>
           <span className="px-6 text-gray-400 uppercase text-sm">Listas</span>
           <Link to={`/eventos/${id}/invitados`}>
             <div className="px-6 flex items-center gap-2">
-              {event?.nombre && <FaClipboardList />}
-              <span className="mt-1">
-                {event?.nombre ? event.Invitados.length : null}
+              {event?.Invitados?.length > 0 && <FaClipboardList />}
+              <span className="mt-px">
+                {event?.Invitados?.length > 0 ? event.Invitados.length : null}
               </span>
             </div>
           </Link>

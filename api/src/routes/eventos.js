@@ -33,7 +33,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log("estoy en las rutasss")
+    console.log("estoy en las rutasss");
     const { nombre, cliente, fechaInicio, fechaFin, direccion } = req.body;
     if (!nombre || !cliente) res.status(400).send("se requieren mas datos");
 
@@ -50,6 +50,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { status, archived } = req.body;
+
+  try {
+    if (!archived) {
+      let evento = await Evento.findByPk(id);
+      await evento.update({ status: status });
+
+      return res.status(200).json(evento);
+    }
+    let evento = await Evento.findByPk(id);
+    await evento.update({ archived: archived });
+
+    return res.status(200).json(evento);
+  } catch (error) {
+    return res.status(404).send(error.message);
+  }
+});
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
 

@@ -5,6 +5,7 @@ export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL";
 export const RESET_EVENT_DETAIL = "RESET_EVENT_DETAIL";
 export const POST_EVENT = "POST_EVENT";
 export const GET_INVITADO = "GET_INVITADO";
+export const SET_EVENT_STATUS = "SET_EVENT_STATUS";
 
 export function getAllEvents() {
   return async function (dispatch) {
@@ -25,6 +26,22 @@ export function getEventDetail(id) {
       const events = await axios.get("http://localhost:3001/eventos/" + id);
       return dispatch({
         type: GET_EVENT_DETAIL,
+        payload: events.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+export function setEventStatus(id, status) {
+  return async function (dispatch) {
+    try {
+      const events = await axios.patch(
+        "http://localhost:3001/eventos/" + id,
+        status
+      );
+      return dispatch({
+        type: SET_EVENT_STATUS,
         payload: events.data,
       });
     } catch (error) {
@@ -58,7 +75,7 @@ export function createList(id, lista) {
       return await axios.post(`http://localhost:3001/invitados/${id}`, lista);
     };
   } catch (error) {
-    return "Ha ocurrido un error, intenta nuevamente.";
+    console.log(error.message);
   }
 }
 export function getInvitado(id) {

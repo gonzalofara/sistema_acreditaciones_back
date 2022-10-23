@@ -54,17 +54,9 @@ const SideBar = () => {
             <li>
               <a
                 className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
-                href="#"
+                href="/archivo"
               >
                 Archivo
-              </a>
-            </li>
-            <li>
-              <a
-                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
-                href="#"
-              >
-                Invitados
               </a>
             </li>
 

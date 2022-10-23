@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventDetail } from "../../redux/actions/actions";
+import { getEventDetail, setEventStatus } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
-import { BsFillArchiveFill } from "react-icons/bs";
+import { BiWindowClose } from "react-icons/bi";
 import { FaUsers, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -12,9 +12,8 @@ const Evento = (props) => {
 
   const dispatch = useDispatch();
   const evento = useSelector((state) => state.evento);
-  console.log(id);
   const [input, setInput] = useState("");
-
+  console.log(evento);
   useEffect(() => {
     dispatch(getEventDetail(id));
   }, [dispatch]);
@@ -50,8 +49,16 @@ const Evento = (props) => {
             <li className="relative flex items-center ">
               <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
 
-              <p className="flex h-6 items-center bg-blue-500 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100">
-                {evento?.fechaF === "" ? "Finalizado" : "Activo"}
+              <p
+                className={
+                  evento?.status === "active"
+                    ? "flex h-6 items-center bg-blue-500 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100"
+                    : evento?.status === "closed"
+                    ? "flex h-6 items-center bg-rose-600 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100"
+                    : null
+                }
+              >
+                {evento?.status === "active" ? "Activo" : "Finalizado"}
               </p>
             </li>
             <li className="flex items-center">
@@ -71,8 +78,23 @@ const Evento = (props) => {
             </li>
           </ol>
         </nav>
-
-        <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-12 text-left">
+        <div className="mt-6 grid grid-cols-1 gap-x-12 gap-y-6 text-left">
+          <p
+            className={
+              evento?.status === "active"
+                ? "flex gap-1 md:mx-0 mx-auto items-center cursor-pointer bg-rose-600 w-[160px] mt-2 pl-2 text-gray-100 py-2 rounded-md hover:bg-rose-500 hover:text-gray-50 text-center"
+                : "flex gap-1 md:mx-0 mx-auto items-center bg-rose-600 w-[160px] mt-2 pl-2 text-gray-100 py-2 rounded-md text-center opacity-50"
+            }
+            onClick={() =>
+              evento?.status === "active" &&
+              dispatch(setEventStatus(id, { status: "closed" }))
+            }
+          >
+            <span>
+              <BiWindowClose size={20} />
+            </span>
+            Finalizar evento
+          </p>
           <div className="relative mb-6">
             <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-gray-400 focus:text-gray-900">
               <FaSearch size={20} />

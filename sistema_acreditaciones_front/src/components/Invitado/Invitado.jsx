@@ -42,7 +42,9 @@ const Invitado = (props) => {
             </li>
             <li className="relative grid mb-4 text-left">
               <span className="text-gray-400 uppercase text-xs">Id</span>
-              <span className="text-gray-700 uppercase">{invitado?.id}</span>
+              <span className="text-gray-700 uppercase">
+                {invitado?.inv_id}
+              </span>
             </li>
             <li className="relative grid mb-4 text-left">
               <span className="text-gray-400 uppercase text-xs">Nombre</span>

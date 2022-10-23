@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
-import { getEventDetail } from "../../redux/actions/actions";
+import { getEventDetail, resetEventDetail } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const Invitados = (props) => {
   console.log(id);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(resetEventDetail());
     dispatch(getEventDetail(id));
   }, [dispatch]);
   let n = 0;

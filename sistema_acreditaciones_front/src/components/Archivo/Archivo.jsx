@@ -10,7 +10,7 @@ import Aside from "../Aside/Aside";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const Eventos = () => {
+const Archivo = () => {
   const eventos = useSelector((state) => state.eventos);
   const evento = useSelector((state) => state.evento);
   const dispatch = useDispatch();
@@ -19,18 +19,17 @@ const Eventos = () => {
     dispatch(getAllEvents());
     dispatch(resetEventDetail());
   }, [dispatch]);
-
   return (
     <section>
       <SideBar />
       <Aside evento={evento} />
       <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <h2 className="text-xl font-bold sm:text-2xl text-start">Eventos</h2>
+        <h2 className="text-xl font-bold sm:text-2xl text-start">Archivo</h2>
 
         <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-12 lg:grid-cols-2 text-left">
           {eventos?.length > 0 &&
             eventos
-              ?.filter((e) => e.archived !== "true")
+              ?.filter((e) => e.archived !== "false")
               .map((e) => (
                 <blockquote
                   key={e.id}
@@ -89,7 +88,7 @@ const Eventos = () => {
                     >
                       <BsFillArchiveFill size={18} />
                       <span className="opacity-0 group-hover:opacity-50">
-                        Archivar
+                        Desarchivar
                       </span>
                     </p>
                   </footer>
@@ -101,4 +100,4 @@ const Eventos = () => {
   );
 };
 
-export default Eventos;
+export default Archivo;
