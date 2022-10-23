@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { postEvents } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
+import Swal from "sweetalert2";
+
 const NuevoEvento = () => {
   const dispatch = useDispatch();
   //Estados
@@ -24,7 +26,26 @@ const NuevoEvento = () => {
   const handleSubmit = (e) => {
     console.log("ESTOY EN EL HANDLE");
     e.preventDefault();
-    dispatch(postEvents(evento));
+    Swal.fire({
+      title: "¿Crear evento?",
+      showCancelButton: true,
+      confirmButtonText: "Crear",
+      cancelButton: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        dispatch(postEvents(evento));
+        Swal.fire({
+          title: "Evento creado correctamente!",
+          confirmButtonText: "Ok",
+          icon: "success",
+        }).then((result) => {
+          if (result.isConfirmed) {
+          }
+          history.back();
+        });
+      }
+    });
   };
   return (
     <>
@@ -104,9 +125,9 @@ const NuevoEvento = () => {
               className="bg-gray-50 w-full py-3 rounded-xl px-2"
               type="text"
               name="direccion"
-              value={evento.dirreccion}
+              value={evento.direccion}
               onChange={handleChange}
-              placeholder="Direccion"
+              placeholder="Dirección"
             />
           </div>
           <div className="flex gap-4 justify-start items-center">

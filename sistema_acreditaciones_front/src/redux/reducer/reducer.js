@@ -2,6 +2,7 @@ import {
   GET_ALL_EVENTS,
   GET_EVENT_DETAIL,
   SET_EVENT_STATUS,
+  SET_INVITADO_STATUS,
   GET_INVITADO,
   RESET_EVENT_DETAIL,
   RESET_INVITADO_DETAIL,
@@ -29,6 +30,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         evento: action.payload,
+      };
+    case SET_INVITADO_STATUS:
+      return {
+        ...state,
+        invitado: action.payload,
       };
 
     case GET_INVITADO:

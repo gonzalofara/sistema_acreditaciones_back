@@ -63,6 +63,20 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    let invitado = await Invitados.findByPk(id);
+    await invitado.update({ status: status });
+
+    return res.status(200).json(invitado);
+  } catch (error) {
+    return res.status(404).send(error.message);
+  }
+});
+
 router.delete("/delete/:id", async (req, res) => {
   console.log("ESTOYY EN EL DELETEEEEEEE");
   const { id } = req.params;

@@ -4,6 +4,7 @@ export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
 export const POST_EVENT = "POST_EVENT";
 export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL";
 export const SET_EVENT_STATUS = "SET_EVENT_STATUS";
+export const SET_INVITADO_STATUS = "SET_INVITADO_STATUS";
 export const GET_INVITADO = "GET_INVITADO";
 export const RESET_EVENT_DETAIL = "RESET_EVENT_DETAIL";
 export const RESET_INVITADO_DETAIL = "RESET_INVITADO_DETAIL";
@@ -50,6 +51,24 @@ export function setEventStatus(id, status) {
     }
   };
 }
+
+export function setInvitadoStatus(id, status) {
+  return async function (dispatch) {
+    try {
+      const events = await axios.patch(
+        "http://localhost:3001/invitados/" + id,
+        status
+      );
+      return dispatch({
+        type: SET_INVITADO_STATUS,
+        payload: events.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
 export function resetEventDetail() {
   return function (dispatch) {
     return dispatch({

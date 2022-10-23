@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getInvitado } from "../../redux/actions/actions";
+import { getInvitado, setInvitadoStatus } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import { BsFillArchiveFill } from "react-icons/bs";
@@ -70,10 +70,10 @@ const Invitado = (props) => {
                 ? "flex gap-1 md:mx-0 mx-auto items-center justify-center cursor-pointer bg-teal-600 w-[130px] mt-4 text-gray-100 py-2 rounded-md hover:bg-teal-500 hover:text-gray-50 text-center"
                 : "flex gap-1 md:mx-0 mx-auto items-center justify-center bg-rose-600 w-[130px] mt-4 text-gray-100 py-2 rounded-md text-center opacity-50"
             }
-            // onClick={() =>
-            //   invitado?.status !== "pendiente" &&
-            //   dispatch(setEventStatus(id, { status: "closed" }))
-            // }
+            onClick={() =>
+              invitado?.status === "pendiente" &&
+              dispatch(setInvitadoStatus(id, { status: "acreditado" }))
+            }
           >
             <span>
               <FaIdCard size={18} />
@@ -82,24 +82,26 @@ const Invitado = (props) => {
           </p>
           <ul className="mt-4 py-4">
             <li className="relative grid mb-4 text-left">
-              <span className="text-gray-400 uppercase text-xs">Lista</span>
-              <span className="text-gray-700 uppercase">{evento?.nombre}</span>
+              <span className="text-gray-500 uppercase text-xs">Lista</span>
+              <span className="text-gray-700 capitalize text-base">
+                {evento?.nombre}
+              </span>
             </li>
             <li className="relative grid mb-4 text-left">
-              <span className="text-gray-400 uppercase text-xs">Id</span>
-              <span className="text-gray-700 uppercase">
+              <span className="text-gray-500 uppercase text-xs">Id</span>
+              <span className="text-gray-700 capitalize text-base">
                 {invitado?.inv_id}
               </span>
             </li>
             <li className="relative grid mb-4 text-left">
-              <span className="text-gray-400 uppercase text-xs">Nombre</span>
-              <span className="text-gray-700 uppercase">
+              <span className="text-gray-500 uppercase text-xs">Nombre</span>
+              <span className="text-gray-700 capitalize text-base">
                 {invitado?.first_name}
               </span>
             </li>
             <li className="relative grid mb-4 text-left">
-              <span className="text-gray-400 uppercase text-xs">Apellido</span>
-              <span className="text-gray-700 uppercase">
+              <span className="text-gray-500 uppercase text-xs">Apellido</span>
+              <span className="text-gray-700 capitalize text-base">
                 {invitado?.last_name}
               </span>
             </li>
