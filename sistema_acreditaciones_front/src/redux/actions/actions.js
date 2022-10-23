@@ -1,11 +1,12 @@
 import axios from "axios";
 
 export const GET_ALL_EVENTS = "GET_ALL_EVENTS";
-export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL";
-export const RESET_EVENT_DETAIL = "RESET_EVENT_DETAIL";
 export const POST_EVENT = "POST_EVENT";
-export const GET_INVITADO = "GET_INVITADO";
+export const GET_EVENT_DETAIL = "GET_EVENT_DETAIL";
 export const SET_EVENT_STATUS = "SET_EVENT_STATUS";
+export const GET_INVITADO = "GET_INVITADO";
+export const RESET_EVENT_DETAIL = "RESET_EVENT_DETAIL";
+export const RESET_INVITADO_DETAIL = "RESET_INVITADO_DETAIL";
 
 export function getAllEvents() {
   return async function (dispatch) {
@@ -53,6 +54,13 @@ export function resetEventDetail() {
   return function (dispatch) {
     return dispatch({
       type: RESET_EVENT_DETAIL,
+    });
+  };
+}
+export function resetInvitadoDetail() {
+  return function (dispatch) {
+    return dispatch({
+      type: RESET_INVITADO_DETAIL,
     });
   };
 }

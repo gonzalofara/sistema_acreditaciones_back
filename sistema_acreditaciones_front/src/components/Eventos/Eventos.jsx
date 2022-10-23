@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 
 const Eventos = () => {
   const eventos = useSelector((state) => state.eventos);
-  const evento = useSelector((state) => state.evento);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +22,7 @@ const Eventos = () => {
   return (
     <section>
       <SideBar />
-      <Aside evento={evento} />
+      <Aside />
       <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <h2 className="text-xl font-bold sm:text-2xl text-start">Eventos</h2>
 
@@ -52,9 +51,9 @@ const Eventos = () => {
                         {e.nombre}
                       </h1>
                     </Link>
-                    <p className="uppercase font-semibold text-gray-700 text-sm text-sm font-semibold">
+                    <p className="uppercase font-semibold text-gray-700 text-xs">
                       {e.cliente} -{" "}
-                      <span className="font-semibold text-gray-500 text-sm">
+                      <span className="font-semibold text-gray-500 text-xs">
                         {e.Invitados.length + " Invitados"}
                       </span>
                     </p>

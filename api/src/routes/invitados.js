@@ -19,7 +19,6 @@ router.post("/:id", async (req, res) => {
         email: i.email,
         phone: i.phone,
         dni: i.dni,
-        status: i.status,
         path: i.path,
         properties: i.properties,
       };

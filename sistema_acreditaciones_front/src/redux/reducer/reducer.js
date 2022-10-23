@@ -1,9 +1,10 @@
 import {
   GET_ALL_EVENTS,
   GET_EVENT_DETAIL,
-  RESET_EVENT_DETAIL,
-  GET_INVITADO,
   SET_EVENT_STATUS,
+  GET_INVITADO,
+  RESET_EVENT_DETAIL,
+  RESET_INVITADO_DETAIL,
 } from "../actions/actions";
 
 const initialState = {
@@ -39,6 +40,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         evento: {},
+        invitado: {},
+      };
+    case RESET_INVITADO_DETAIL:
+      return {
+        ...state,
         invitado: {},
       };
     default:

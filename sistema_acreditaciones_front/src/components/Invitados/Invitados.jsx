@@ -18,7 +18,7 @@ const Invitados = (props) => {
   return (
     <section>
       <SideBar />
-      <Aside />
+      <Aside invitados={evento?.Invitados?.length} />
       <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <h2 className="text-xl font-bold sm:text-4xl text-start grid">
           {evento?.nombre}
@@ -27,7 +27,7 @@ const Invitados = (props) => {
           </span>
         </h2>
 
-        <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-12 text-left">
+        <div className="mt-4 grid grid-cols-1 gap-x-12 gap-y-12 text-left">
           <ol>
             {evento?.Invitados?.map((i) => {
               n++;

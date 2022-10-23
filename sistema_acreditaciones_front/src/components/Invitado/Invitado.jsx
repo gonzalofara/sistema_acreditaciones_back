@@ -4,7 +4,7 @@ import { getInvitado } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import { BsFillArchiveFill } from "react-icons/bs";
-import { FaUsers, FaSearch } from "react-icons/fa";
+import { FaUsers, FaIdCard } from "react-icons/fa";
 import { Link } from "react-router-dom";
 const Invitado = (props) => {
   const id = props.match.params.id;
@@ -33,9 +33,54 @@ const Invitado = (props) => {
             {evento?.nombre}
           </span>
         </h2>
+        <nav
+          aria-label="Breadcrumb"
+          className="flex mt-4 justify-center md:justify-start"
+        >
+          <ol role="list" className="flex gap-2 overflow-hidden text-gray-700">
+            <li className="flex items-center">
+              <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900">
+                <FaUsers size={20} />
 
+                <span className="ml-1.5 text-xs font-medium"> Estado </span>
+              </p>
+            </li>
+
+            <li className="relative flex items-center ">
+              <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
+
+              <p
+                className={
+                  invitado?.status !== "pendiente"
+                    ? "flex h-6 items-center bg-blue-500 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100"
+                    : invitado?.status === "pendiente"
+                    ? "flex h-6 items-center bg-rose-600 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100"
+                    : null
+                }
+              >
+                {invitado?.status !== "pendiente" ? "Acreditado" : "Pendiente"}
+              </p>
+            </li>
+          </ol>
+        </nav>
         <div>
-          <ul className="mt-12 py-4">
+          <p
+            className={
+              invitado?.status === "pendiente"
+                ? "flex gap-1 md:mx-0 mx-auto items-center justify-center cursor-pointer bg-teal-600 w-[130px] mt-4 text-gray-100 py-2 rounded-md hover:bg-teal-500 hover:text-gray-50 text-center"
+                : "flex gap-1 md:mx-0 mx-auto items-center justify-center bg-rose-600 w-[130px] mt-4 text-gray-100 py-2 rounded-md text-center opacity-50"
+            }
+            // onClick={() =>
+            //   invitado?.status !== "pendiente" &&
+            //   dispatch(setEventStatus(id, { status: "closed" }))
+            // }
+          >
+            <span>
+              <FaIdCard size={18} />
+            </span>
+            Acreditar
+          </p>
+          <ul className="mt-4 py-4">
             <li className="relative grid mb-4 text-left">
               <span className="text-gray-400 uppercase text-xs">Lista</span>
               <span className="text-gray-700 uppercase">{evento?.nombre}</span>

@@ -18,13 +18,14 @@ const SideBar = () => {
          shadow-sm
        "
       >
-        <div className="flex items-center content-center gap-1">
-          <a href="/general">
-            <img src={logo} className="w-[40px] h-[40px]" />
+        <div>
+          <a href="/general" className="flex items-center content-center gap-1">
+            <img src={logo} className="w-[45px] h-[45px]" />
+
+            <span className="text-gray-900 text-base font-extrabold">
+              Acreditaciones
+            </span>
           </a>
-          <span className="text-gray-900 text-sm font-extrabold">
-            Acreditaciones
-          </span>
         </div>
 
         <div className="cursor-pointer md:hidden block">
