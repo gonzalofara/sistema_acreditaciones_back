@@ -10,6 +10,7 @@ import Aside from "../Aside/Aside";
 import { BiWindowClose } from "react-icons/bi";
 import { FaUsers, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Evento = (props) => {
   const id = props.match.params.id;
@@ -39,7 +40,24 @@ const Evento = (props) => {
 
     setShowFiltered(true);
   };
-
+  const handleClick = () => {
+    Swal.fire({
+      title: "¿Finalizar evento?",
+      showCancelButton: true,
+      confirmButtonText: "Finalizar",
+      cancelButton: `Cancelar`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        dispatch(setEventStatus(id, { status: "closed" }));
+        Swal.fire({
+          title: "Evento finalizado",
+          confirmButtonText: "Ok",
+          icon: "success",
+        });
+      }
+    });
+  };
   return (
     <section>
       <SideBar />
@@ -117,10 +135,7 @@ const Evento = (props) => {
                 ? "flex gap-1 md:mx-0 mx-auto items-center cursor-pointer bg-rose-600 w-[160px] mt-2 pl-2 text-gray-100 py-2 rounded-md hover:bg-rose-500 hover:text-gray-50 text-center"
                 : "flex gap-1 md:mx-0 mx-auto items-center bg-rose-600 w-[160px] mt-2 pl-2 text-gray-100 py-2 rounded-md text-center opacity-50"
             }
-            onClick={() =>
-              evento?.status === "active" &&
-              dispatch(setEventStatus(id, { status: "closed" }))
-            }
+            onClick={evento?.status === "active" && handleClick}
           >
             <span>
               <BiWindowClose size={20} />

@@ -83,7 +83,7 @@ const Eventos = () => {
                           : "text-xs text-rose-500 hover:cursor-pointer group hover:text-rose-700 flex gap-1 items-center w-[100px]"
                       }
                       onClick={() =>
-                        dispatch(setEventStatus(e.id, { archived: "false" }))
+                        dispatch(setEventStatus(e.id, { archived: "true" }))
                       }
                     >
                       <BsFillArchiveFill size={18} />

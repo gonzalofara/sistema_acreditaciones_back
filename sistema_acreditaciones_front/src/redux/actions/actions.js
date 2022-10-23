@@ -35,19 +35,34 @@ export function getEventDetail(id) {
     }
   };
 }
-export function setEventStatus(id, status) {
+export function setEventStatus(id, status, archived) {
   return async function (dispatch) {
-    try {
-      const events = await axios.patch(
-        "http://localhost:3001/eventos/" + id,
-        status
-      );
-      return dispatch({
-        type: SET_EVENT_STATUS,
-        payload: events.data,
-      });
-    } catch (error) {
-      console.log(error.message);
+    if (status) {
+      try {
+        const events = await axios.patch(
+          "http://localhost:3001/eventos/" + id,
+          status
+        );
+        return dispatch({
+          type: SET_EVENT_STATUS,
+          payload: events.data,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else if (archived) {
+      try {
+        const events = await axios.patch(
+          "http://localhost:3001/eventos/" + id,
+          archived
+        );
+        return dispatch({
+          type: SET_EVENT_STATUS,
+          payload: events.data,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 }
@@ -55,13 +70,13 @@ export function setEventStatus(id, status) {
 export function setInvitadoStatus(id, status) {
   return async function (dispatch) {
     try {
-      const events = await axios.patch(
+      const invitado = await axios.patch(
         "http://localhost:3001/invitados/" + id,
         status
       );
       return dispatch({
         type: SET_INVITADO_STATUS,
-        payload: events.data,
+        payload: invitado.data,
       });
     } catch (error) {
       console.log(error.message);

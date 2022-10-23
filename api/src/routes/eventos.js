@@ -60,11 +60,12 @@ router.patch("/:id", async (req, res) => {
       await evento.update({ status: status });
 
       return res.status(200).json(evento);
-    }
-    let evento = await Evento.findByPk(id);
-    await evento.update({ archived: archived });
+    } else if (archived) {
+      let evento = await Evento.findByPk(id);
+      await evento.update({ archived: archived });
 
-    return res.status(200).json(evento);
+      return res.status(200).json(evento);
+    }
   } catch (error) {
     return res.status(404).send(error.message);
   }
