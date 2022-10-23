@@ -36,8 +36,8 @@ const Eventos = () => {
                   key={e.id}
                   className={
                     e.status === "active"
-                      ? "border-t-4 border-teal-600"
-                      : "border-t-4 border-rose-600"
+                      ? "border-t-4 border-teal-600 shadow-md"
+                      : "border-t-4 border-rose-600 shadow-md"
                   }
                 >
                   <header className="sm:grid sm:items-center ml-4 mt-2">
@@ -52,9 +52,9 @@ const Eventos = () => {
                         {e.nombre}
                       </h1>
                     </Link>
-                    <p className="uppercase text-sm font-semibold">
+                    <p className="uppercase font-semibold text-gray-700 text-sm text-sm font-semibold">
                       {e.cliente} -{" "}
-                      <span className="font-medium">
+                      <span className="font-semibold text-gray-500 text-sm">
                         {e.Invitados.length + " Invitados"}
                       </span>
                     </p>

@@ -35,8 +35,8 @@ const Archivo = () => {
                   key={e.id}
                   className={
                     e.status === "active"
-                      ? "border-t-4 border-teal-600"
-                      : "border-t-4 border-rose-600"
+                      ? "border-t-4 border-teal-600 shadow-md"
+                      : "border-t-4 border-rose-600 shadow-md"
                   }
                 >
                   <header className="sm:grid sm:items-center ml-4 mt-2">
@@ -51,9 +51,9 @@ const Archivo = () => {
                         {e.nombre}
                       </h1>
                     </Link>
-                    <p className="uppercase text-sm font-semibold">
+                    <p className="uppercase font-semibold text-gray-700 text-sm">
                       {e.cliente} -{" "}
-                      <span className="font-medium">
+                      <span className="font-semibold text-gray-500 text-sm">
                         {e.Invitados.length + " Invitados"}
                       </span>
                     </p>
@@ -80,7 +80,7 @@ const Archivo = () => {
                       className={
                         e.status === "active"
                           ? "text-xs text-gray-500 hover:cursor-pointer group hover:text-gray-700 flex gap-1 items-center w-[100px]"
-                          : "text-xs text-rose-500 hover:cursor-pointer group hover:text-rose-700 flex gap-1 items-center w-[100px]"
+                          : "text-xs text-rose-700 hover:cursor-pointer group hover:text-rose-500 flex gap-1 items-center w-[100px]"
                       }
                       onClick={() =>
                         dispatch(setEventStatus(e.id, { archived: "false" }))
