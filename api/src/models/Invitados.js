@@ -8,10 +8,14 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.INTEGER,
-        defaultValue: DataTypes.UUIDV4,
+        autoIncrement: true,
         primaryKey: true,
-        allowNull: false,
         unique: true,
+      },
+      inv_id: {
+        type: DataTypes.INTEGER,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
       },
       list_id: {
         type: DataTypes.STRING,
@@ -48,7 +52,7 @@ module.exports = (sequelize) => {
       status: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "",
+        defaultValue: "pendiente",
       },
     },
 

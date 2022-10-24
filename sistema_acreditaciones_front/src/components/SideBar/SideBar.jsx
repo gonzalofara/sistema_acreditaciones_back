@@ -1,6 +1,6 @@
 import React from "react";
-import { FaIdCardAlt } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import logo from "../../assets/magnetica_rayo.png";
 const SideBar = () => {
   return (
     <header>
@@ -18,13 +18,14 @@ const SideBar = () => {
          shadow-sm
        "
       >
-        <div className="flex items-center content-center gap-1">
-          <a href="/general">
-            <FaIdCardAlt size={20} fill="#7e7e7e" />
+        <div>
+          <a href="/general" className="flex items-center content-center gap-1">
+            <img src={logo} className="w-[45px] h-[45px]" />
+
+            <span className="text-gray-900 text-base font-extrabold">
+              Acreditaciones
+            </span>
           </a>
-          <span className="text-gray-900 text-sm font-extrabold">
-            Acreditaciones
-          </span>
         </div>
 
         <div className="cursor-pointer md:hidden block">
@@ -54,17 +55,9 @@ const SideBar = () => {
             <li>
               <a
                 className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
-                href="#"
+                href="/archivo"
               >
                 Archivo
-              </a>
-            </li>
-            <li>
-              <a
-                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
-                href="#"
-              >
-                Invitados
               </a>
             </li>
 

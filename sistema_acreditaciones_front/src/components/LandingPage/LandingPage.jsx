@@ -1,5 +1,5 @@
 import React from "react";
-
+import { MdOutlineAlternateEmail } from "react-icons/md";
 const LandingPage = () => {
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -21,25 +21,12 @@ const LandingPage = () => {
           <div className="relative">
             <input
               type="email"
-              className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+              className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm text-gray-300 shadow-sm"
               placeholder="Email"
             />
 
-            <span className="absolute inset-y-0 right-4 inline-flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                />
-              </svg>
+            <span className="absolute inset-y-0 right-4 inline-flex items-center text-gray-400">
+              <MdOutlineAlternateEmail size={22} />
             </span>
           </div>
         </div>
@@ -51,38 +38,19 @@ const LandingPage = () => {
           <div className="relative">
             <input
               type="password"
-              className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+              className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm text-gray-300 shadow-sm"
               placeholder="Contraseña"
             />
 
-            <span className="absolute inset-y-0 right-4 inline-flex items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
+            <span className="absolute inset-y-0 right-4 inline-flex items-center text-gray-400">
+              <MdOutlineAlternateEmail size={22} />
             </span>
           </div>
         </div>
 
         <div className="flex items-center justify-center">
           <div
-            className="ml-3 inline-block rounded-lg bg-blue-500 px-20 py-3 text-sm font-medium text-white cursor-pointer"
+            className="inline-block rounded-lg bg-teal-600 hover:bg-teal-500 px-14 py-3 text-sm font-medium text-gray-50 cursor-pointer"
             onClick={() => location.assign("/general")}
           >
             Ingresar

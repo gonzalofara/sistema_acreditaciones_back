@@ -6,31 +6,30 @@ import {
   setEventStatus,
 } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
-import Aside from "../Aside/Aside";
+import ArchivoAside from "./ArchivoAside";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const Eventos = () => {
-  const eventos = useSelector((state) => state.eventos);
+const Archivo = () => {
+  let eventos = useSelector((state) => state.eventos).filter(
+    (e) => e.archived !== "false"
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllEvents());
-    dispatch(resetEventDetail());
   }, [dispatch]);
-
   return (
     <section>
       <SideBar />
-      <Aside />
+      <ArchivoAside />
       <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <h2 className="text-xl font-bold sm:text-2xl text-start">Eventos</h2>
+        <h2 className="text-xl font-bold sm:text-2xl text-start">Archivo</h2>
 
         <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-12 lg:grid-cols-2 text-left">
-          {eventos?.length > 0 &&
-            eventos
-              ?.filter((e) => e.archived !== "true")
-              .map((e) => (
+          {eventos?.length
+            ? eventos?.map((e) => (
                 <blockquote
                   key={e.id}
                   className={
@@ -80,24 +79,25 @@ const Eventos = () => {
                       className={
                         e.status === "active"
                           ? "text-xs text-gray-500 hover:cursor-pointer group hover:text-gray-700 flex gap-1 items-center w-[100px]"
-                          : "text-xs text-rose-500 hover:cursor-pointer group hover:text-rose-700 flex gap-1 items-center w-[100px]"
+                          : "text-xs text-rose-400 hover:cursor-pointer group hover:text-rose-600 flex gap-1 items-center w-[100px]"
                       }
                       onClick={() =>
-                        dispatch(setEventStatus(e.id, { archived: "true" }))
+                        dispatch(setEventStatus(e.id, { archived: "false" }))
                       }
                     >
                       <BsFillArchiveFill size={18} />
                       <span className="opacity-0 group-hover:opacity-50">
-                        Archivar
+                        Desarchivar
                       </span>
                     </p>
                   </footer>
                 </blockquote>
-              ))}
+              ))
+            : null}
         </div>
       </div>
     </section>
   );
 };
 
-export default Eventos;
+export default Archivo;
