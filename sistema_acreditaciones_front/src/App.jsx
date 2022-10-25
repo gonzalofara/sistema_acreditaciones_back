@@ -17,7 +17,8 @@ function App() {
     <BrowserRouter>
       <div>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/login" component={LandingPage} />
           <Route exact path="/general" component={Dashboard} />
           <Route exact path="/eventos" component={Eventos} />
           <Route exact path="/eventos/:id" component={Evento} />
@@ -30,7 +31,6 @@ function App() {
           />
           <Route exact path="/evento/crear" component={NuevoEvento} />
           <Route exact path="/archivo" component={Archivo} />
-          <Route exact path="/landing" component={Landing} />
         </Switch>
       </div>
     </BrowserRouter>

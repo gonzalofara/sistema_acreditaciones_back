@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const Eventos = () => {
   const eventos = useSelector((state) => state.eventos);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
