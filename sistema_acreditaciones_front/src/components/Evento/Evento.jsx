@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Estadisticas from "../Estadisticas/Estadisticas";
 import {
   getEventDetail,
   setEventStatus,
@@ -8,6 +9,7 @@ import {
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import { BiWindowClose } from "react-icons/bi";
+import{ImStatsBars}from "react-icons/im";
 import { FaUsers, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -17,6 +19,7 @@ const Evento = (props) => {
 
   const dispatch = useDispatch();
   const evento = useSelector((state) => state.evento);
+  const invitadosArr=evento?.Invitados;
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [showFiltered, setShowFiltered] = useState(false);
@@ -129,6 +132,7 @@ const Evento = (props) => {
           </ol>
         </nav>
         <div className="mt-6 grid grid-cols-1 gap-x-12 gap-y-6 text-left">
+          <div className="flex gap-x-6">
           <p
             className={
               evento?.status === "active"
@@ -142,6 +146,23 @@ const Evento = (props) => {
             </span>
             Finalizar evento
           </p>
+          <p
+            className={
+             
+                 "flex gap-1 md:mx-0 mx-auto items-center cursor-pointer bg-teal-600 w-[160px] mt-2 pl-2 text-gray-100 py-2 rounded-md hover:bg-teal-500 hover:text-gray-50 text-center"
+                 
+            }
+           
+          >
+            <span>
+              <ImStatsBars size={20} />
+            </span>
+           Estadisticas
+          </p>
+          </div>
+          <div>
+            <Estadisticas invitadosArr={invitadosArr}/>
+          </div>
           <div className="relative">
             <span
               className={
