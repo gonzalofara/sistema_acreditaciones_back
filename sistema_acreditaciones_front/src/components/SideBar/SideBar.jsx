@@ -2,6 +2,10 @@ import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../../assets/magnetica_rayo.png";
 const SideBar = () => {
+  const handleOut = () => {
+    localStorage.clear();
+    window.location.assign("/");
+  };
   return (
     <header>
       <nav
@@ -62,12 +66,12 @@ const SideBar = () => {
             </li>
 
             <li>
-              <a
-                className="md:p-4 py-2 block hover:text-gray-600 text-teal-600"
-                href="#"
+              <p
+                className="md:p-4 py-2 block cursor-pointer hover:text-gray-600 text-teal-600"
+                onClick={handleOut}
               >
                 Salir
-              </a>
+              </p>
             </li>
           </ul>
         </div>

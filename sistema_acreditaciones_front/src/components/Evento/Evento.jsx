@@ -24,15 +24,17 @@ const Evento = (props) => {
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [showFiltered, setShowFiltered] = useState(false);
-  console.log(evento);
   useEffect(() => {
     dispatch(resetInvitadoDetail());
     dispatch(getEventDetail(id));
-  }, [dispatch]);
+  }, [dispatch, evento.status]);
+
 
     const handlehidden=(e)=>{
       setDisabled(!disabled)
     }
+
+
   const handleChange = (e) => {
     let invitados = evento?.Invitados;
     setSearch(e.currentTarget.value);
@@ -52,7 +54,10 @@ const Evento = (props) => {
       title: "¿Finalizar evento?",
       showCancelButton: true,
       confirmButtonText: "Finalizar",
-      cancelButton: `Cancelar`,
+      cancelButtonText: `Cancelar`,
+      width: "300px",
+      color: "#8c8a8a",
+      confirmButtonColor: "#f43f5e",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -62,6 +67,7 @@ const Evento = (props) => {
           confirmButtonText: "Ok",
           icon: "success",
         });
+        dispatch(getEventDetail(id));
       }
     });
   };
