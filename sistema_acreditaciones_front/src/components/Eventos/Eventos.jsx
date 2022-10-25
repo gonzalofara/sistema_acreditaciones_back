@@ -12,13 +12,15 @@ import { Link } from "react-router-dom";
 
 const Eventos = () => {
   const eventos = useSelector((state) => state.eventos);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllEvents());
     dispatch(resetEventDetail());
+    dispatch(getAllEvents());
   }, [dispatch]);
 
+  console.log(eventos);
   return (
     <section>
       <SideBar />
