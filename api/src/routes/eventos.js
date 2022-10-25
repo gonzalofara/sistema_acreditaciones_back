@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
       },
       include: {
         model: Invitados,
-        attributes: ["first_name", "last_name", "id", "list_id", "company"],
+        attributes: ["first_name", "last_name", "id", "list_id", "company","status"],
       },
     });
 
