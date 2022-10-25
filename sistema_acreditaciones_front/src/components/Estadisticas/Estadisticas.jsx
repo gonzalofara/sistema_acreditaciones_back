@@ -10,9 +10,10 @@ const Estadisticas = ({ invitadosArr }) => {
   const accredited = invitadosArr?.filter(
     (p) => p.status == "acreditado"
   ).length;
-  console.log(pending);
-  console.log(accredited);
-
+  
+  const percentage =Math.ceil((accredited *100)/invitadosArr?.length)
+  const percentage2=percentage.toString()
+  console.log(percentage2)
   const data = {
     labels: ["Acreditados", "Pendientes", ],
     datasets: [
@@ -20,8 +21,8 @@ const Estadisticas = ({ invitadosArr }) => {
         label: "# of Votes",
         data: [accredited,pending],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 99, 132, 0.5)",
+          "rgba(54, 162, 235, 0.5)",
 
         ],
         borderColor: [
@@ -34,23 +35,29 @@ const Estadisticas = ({ invitadosArr }) => {
   };
   return (
     <>
-      <div className="flex gap-x-6">
-        <span>
-          <h5>Invitados Totales</h5>
-          <p>{invitadosArr?.length}</p>
+      <div className="grid  sm:flex sm:justify-center gap-x-6">
+        <span className="gap-1 md:mx-0 mx-auto
+        item-center bg-teal-400 w-[300px] h-[90px] mt-2 pl-4 py-2 rounded-md">
+          <h5 className="font-semibold text-gray-50">Invitados</h5>
+          <p className="font-semibold text-gray-50">{invitadosArr?.length}</p>
         </span>
-        <span>
-          <h5>Acreditados</h5>
-          <p>{accredited}</p>
+        <span className="gap-1 md:mx-0 mx-auto
+        item-center bg-[#ff638480] w-[300px] h-[90px] mt-2 pl-4 py-2 rounded-md">
+          <h5 className="font-semibold text-gray-50">Acreditados</h5>
+          <p className="font-semibold text-gray-50">{accredited}</p>
         </span>
-        <span>
-          <h5>pendientes</h5>
-          <p>{pending}</p>
+        <span className="gap-1  md:mx-0 mx-auto
+        item-center bg-[#36a2eb80] w-[300px] h-[90px] mt-2 pl-4 py-2 rounded-md">
+          <h5 className="font-semibold text-gray-50">pendientes</h5>
+          <p className="font-semibold text-gray-50">{pending}</p>
         </span>
       </div>
-      <div className="w-1/2 mx-auto">
+      <div className="w-full mt-6 sm:w-1/2 mx-auto">
       <Pie data={data} />;
       </div>
+      <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+    <div className={`bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full `} style={{width:`${percentage2}%`}}> {percentage}%</div>
+  </div>
     </>
   );
 };

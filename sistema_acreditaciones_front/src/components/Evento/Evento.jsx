@@ -20,6 +20,7 @@ const Evento = (props) => {
   const dispatch = useDispatch();
   const evento = useSelector((state) => state.evento);
   const invitadosArr=evento?.Invitados;
+  const [disabled,setDisabled]=useState(true)
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [showFiltered, setShowFiltered] = useState(false);
@@ -29,6 +30,9 @@ const Evento = (props) => {
     dispatch(getEventDetail(id));
   }, [dispatch]);
 
+    const handlehidden=(e)=>{
+      setDisabled(!disabled)
+    }
   const handleChange = (e) => {
     let invitados = evento?.Invitados;
     setSearch(e.currentTarget.value);
@@ -146,13 +150,12 @@ const Evento = (props) => {
             </span>
             Finalizar evento
           </p>
-          <p
+          <p onClick={handlehidden}
             className={
              
                  "flex gap-1 md:mx-0 mx-auto items-center cursor-pointer bg-teal-600 w-[160px] mt-2 pl-2 text-gray-100 py-2 rounded-md hover:bg-teal-500 hover:text-gray-50 text-center"
                  
             }
-           
           >
             <span>
               <ImStatsBars size={20} />
@@ -160,8 +163,8 @@ const Evento = (props) => {
            Estadisticas
           </p>
           </div>
-          <div>
-            <Estadisticas invitadosArr={invitadosArr}/>
+          <div hidden={disabled}>
+            <Estadisticas  invitadosArr={invitadosArr}/>
           </div>
           <div className="relative">
             <span
