@@ -4,9 +4,11 @@ const LandingPage = () => {
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg text-center">
-        <h1 className="text-2xl font-bold sm:text-3xl">Acreditaciones</h1>
+        <h1 className="text-2xl font-black sm:text-3xl drop-shadow-lg">
+          Acreditaciones
+        </h1>
 
-        <p className="mt-4 text-gray-500">
+        <p className="mt-4 font-bold text-gray-500">
           Inicia sesión para acceder al panel principal y administrar tus
           eventos!
         </p>
@@ -14,7 +16,7 @@ const LandingPage = () => {
 
       <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
         <div>
-          <label for="email" className="sr-only">
+          <label htmlFor="email" className="sr-only">
             Email
           </label>
 
@@ -32,7 +34,7 @@ const LandingPage = () => {
         </div>
 
         <div>
-          <label for="password" className="sr-only">
+          <label htmlFor="password" className="sr-only">
             Contraseña
           </label>
           <div className="relative">
@@ -50,10 +52,10 @@ const LandingPage = () => {
 
         <div className="flex items-center justify-center">
           <div
-            className="inline-block rounded-lg bg-teal-600 hover:bg-teal-500 px-14 py-3 text-sm font-medium text-gray-50 cursor-pointer"
+            className="px-8 py-3 cursor-pointer text-lg text-gray-100 font-semibold rounded bg-violet-400 border border-2 border-violet-400 hover:bg-violet-500 hover:border-violet-600 hover:text-white"
             onClick={() => location.assign("/general")}
           >
-            Ingresar
+            Iniciar sesión
           </div>
         </div>
       </form>

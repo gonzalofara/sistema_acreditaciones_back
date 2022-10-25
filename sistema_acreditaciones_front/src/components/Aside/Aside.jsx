@@ -9,14 +9,18 @@ const Aside = ({ id, event, invitados }) => {
           className={event?.nombre ? "relative grid text-left mt-6" : "hidden"}
         >
           <span className="px-6 text-gray-400 uppercase text-sm">Listas</span>
-          <Link to={`/eventos/${id}/invitados`}>
-            <div className="flex gap-2 items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
-              {event?.Invitados?.length > 0 && <IoMdListBox size={22} />}
-              <span className="mt-1 text-teal-600 hover:text-gray-400">
-                {event?.Invitados?.length > 0 ? event.Invitados.length : null}
-              </span>
-            </div>
-          </Link>
+          {event?.Invitados?.length ? (
+            <Link to={`/eventos/${id}/invitados`}>
+              <div className="flex gap-2 items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
+                {event?.Invitados?.length > 0 && <IoMdListBox size={22} />}
+                <span className="mt-1 text-teal-600 hover:text-gray-400">
+                  {event?.Invitados?.length > 0
+                    ? event?.Invitados?.length
+                    : null}
+                </span>
+              </div>
+            </Link>
+          ) : null}
           <Link to={`/eventos/${id}/listas/crear`}>
             <div className="flex gap-px items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
               <IoMdAdd size={22} />

@@ -9,6 +9,7 @@ import NuevoEvento from "./components/NuevoEvento/NuevoEvento";
 import Invitados from "./components/Invitados/Invitados";
 import Invitado from "./components/Invitado/Invitado";
 import Archivo from "./components/Archivo/Archivo";
+import Landing from "./components/Landing/Landing";
 import "./App.css";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           />
           <Route exact path="/evento/crear" component={NuevoEvento} />
           <Route exact path="/archivo" component={Archivo} />
+          <Route exact path="/landing" component={Landing} />
         </Switch>
       </div>
     </BrowserRouter>

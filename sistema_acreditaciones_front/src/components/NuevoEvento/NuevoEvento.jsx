@@ -26,11 +26,15 @@ const NuevoEvento = () => {
   const handleSubmit = (e) => {
     console.log("ESTOY EN EL HANDLE");
     e.preventDefault();
+
     Swal.fire({
       title: "¿Crear evento?",
       showCancelButton: true,
       confirmButtonText: "Crear",
-      cancelButton: `Cancelar`,
+      cancelButtonText: `Cancelar`,
+      width: "300px",
+      color: "#8c8a8a",
+      confirmButtonColor: "#14b8a6",
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -39,10 +43,13 @@ const NuevoEvento = () => {
           title: "Evento creado correctamente!",
           confirmButtonText: "Ok",
           icon: "success",
+          width: "300px",
+          color: "#8c8a8a",
+          confirmButtonColor: "#14b8a6",
         }).then((result) => {
           if (result.isConfirmed) {
+            history.back();
           }
-          history.back();
         });
       }
     });
@@ -96,8 +103,8 @@ const NuevoEvento = () => {
               <span className="font-medium text-gray-500">*</span>
             </h3>
             <input
-              className="bg-gray-50 w-full py-3 rounded-xl px-2"
               type="date"
+              className="bg-gray-50 w-full py-3 rounded-xl px-2"
               name="fechaInicio"
               value={evento.fechaInicio}
               onChange={handleChange}
@@ -131,7 +138,18 @@ const NuevoEvento = () => {
             />
           </div>
           <div className="flex gap-4 justify-start items-center">
-            <button className="bg-teal-500 mt-2 px-6 text-gray-200 hover:bg-teal-600 hover:text-gray-50">
+            <button
+              className={
+                evento?.nombre && evento?.cliente && evento?.fechaInicio
+                  ? "bg-teal-500 mt-2 px-6 text-gray-200 hover:bg-teal-600 hover:text-gray-50"
+                  : "bg-teal-700 mt-2 px-6 text-gray-200 opacity-50"
+              }
+              disabled={
+                evento?.nombre && evento?.cliente && evento?.fechaInicio
+                  ? false
+                  : true
+              }
+            >
               Crear
             </button>
             <Link to="/eventos">

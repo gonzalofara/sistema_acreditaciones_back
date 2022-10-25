@@ -15,10 +15,11 @@ const Eventos = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllEvents());
     dispatch(resetEventDetail());
+    dispatch(getAllEvents());
   }, [dispatch]);
 
+  console.log(eventos);
   return (
     <section>
       <SideBar />
