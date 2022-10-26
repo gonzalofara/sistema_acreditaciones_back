@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../../assets/magnetica_rayo.png";
 const SideBar = () => {
   const handleOut = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     window.location.assign("/");
   };
   return (

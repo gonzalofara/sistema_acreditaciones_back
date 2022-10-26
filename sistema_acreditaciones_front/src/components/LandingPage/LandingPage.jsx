@@ -22,7 +22,7 @@ const LandingPage = () => {
       .post("http://localhost:3001/login", { email, password })
       .then(async (res) => {
         const { token } = res.data;
-        localStorage.setItem("token", token);
+        sessionStorage.setItem("token", token);
         console.log(token);
         window.location.assign("/general");
       })

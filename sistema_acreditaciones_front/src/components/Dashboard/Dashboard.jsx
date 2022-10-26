@@ -3,9 +3,7 @@ import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import Error from "../Error/Error";
 const Dashboard = () => {
-  const tk = localStorage.getItem("token");
-
-  console.log("TKKK", tk);
+  const tk = sessionStorage.getItem("token");
 
   if (tk) {
     return (
