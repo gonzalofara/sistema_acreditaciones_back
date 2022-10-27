@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { postEvents } from "../../redux/actions/actions";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
@@ -11,6 +11,7 @@ import axios from "axios";
 const NuevoEvento = () => {
   const tk = sessionStorage.getItem("token");
   const dispatch = useDispatch();
+  const history = useHistory();
   //Estados
   const [evento, setEvento] = useState({
     nombre: "",
@@ -54,10 +55,10 @@ const NuevoEvento = () => {
               confirmButtonColor: "#14b8a6",
             }).then((result) => {
               if (result.isConfirmed) {
-                history.back();
+                history.push("/eventos");
                 setEvento({});
               }
-              history.back();
+              history.push("/eventos");
               setEvento({});
             });
           })

@@ -42,7 +42,6 @@ const NuevoInvitado = (props) => {
         showCancelButton: true,
         confirmButtonText: "Agregar",
         cancelButtonText: `Cancelar`,
-        width: "300px",
         color: "#8c8a8a",
         confirmButtonColor: "#0d9488",
       }).then((result) => {
