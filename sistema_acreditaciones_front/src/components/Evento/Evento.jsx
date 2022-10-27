@@ -28,6 +28,7 @@ const Evento = (props) => {
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [showFiltered, setShowFiltered] = useState(false);
+
   useEffect(() => {
     dispatch(resetInvitadoDetail());
     dispatch(getEventDetail(id));
@@ -196,7 +197,7 @@ const Evento = (props) => {
                 className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-50 block w-full pl-10 p-2.5 py-4"
                 placeholder="Buscar invitados"
                 onChange={handleChange}
-                vulue={search}
+                value={search}
               />
               {showFiltered && search && filtered.length ? (
                 <ul className="block w-full bg-gray-50 rounded-lg border border-gray-200 text-gray-900">

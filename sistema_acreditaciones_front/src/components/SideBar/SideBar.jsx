@@ -61,11 +61,11 @@ const SideBar = () => {
              text-base text-gray-700
              md:flex
              md:justify-between 
-             md:pt-0"
+             md:pt-0 md:items-center"
           >
             <li>
               <a
-                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
+                className="block text-gray-500 hover:text-teal-500"
                 href="/eventos"
               >
                 Eventos
@@ -73,19 +73,19 @@ const SideBar = () => {
             </li>
             <li>
               <a
-                className="md:p-4 py-2 block text-gray-500 hover:text-teal-600"
+                className="md:p-4 py-2 block text-gray-500 hover:text-teal-500"
                 href="/archivo"
               >
                 Archivo
               </a>
             </li>
 
-            <li>
+            <li className="">
               <p
-                className="md:p-4 py-2 block cursor-pointer hover:text-gray-600 text-teal-600"
+                className="md:px-2 md:py-1 md:rounded py-2 block cursor-pointer bg-teal-600 hover:bg-teal-500 text-gray-100"
                 onClick={handleOut}
               >
-                Salir
+                Cerrar sesión
               </p>
             </li>
           </ul>
