@@ -12,7 +12,7 @@ const Estadisticas = ({ invitadosArr, evento }) => {
     (p) => p.status == "acreditado"
   ).length;
 
-  const percentage = Math.ceil((accredited * 100) / invitadosArr?.length);
+  const percentage = Math.floor((accredited * 100) / invitadosArr?.length);
   const percentage2 = percentage.toString();
   console.log(percentage2);
   const data = {

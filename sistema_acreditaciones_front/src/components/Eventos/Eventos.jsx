@@ -5,14 +5,13 @@ import {
   resetEventDetail,
   setEventStatus,
 } from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import Error from "../Error/Error";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
-import { TiInputChecked } from "react-icons/ti";
-
-import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Eventos = () => {
   const eventos = useSelector((state) => state.eventos);
@@ -73,7 +72,7 @@ const Eventos = () => {
               type="search"
               id="input-group-1"
               className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-50 block w-full pl-10 p-2.5 py-4"
-              placeholder="Buscar invitados"
+              placeholder="Buscar eventos"
               onChange={handleChange}
               value={search}
             />
@@ -87,13 +86,13 @@ const Eventos = () => {
                     <div className="grid w-full">
                       <h3 className="w-1/3 font-semibold">
                         <Link to={"/eventos/" + i.id}>
-                          <span className="font-semibold">
+                          <span className="font-semibold text-teal-600">
                             {i.id}. {i.nombre}
                           </span>
                         </Link>
                       </h3>
                       <p className="uppercase font-medium text-xs text-gray-600">
-                        Cliente - <span>{i?.cliente}</span>
+                        <span>{i?.cliente}</span>
                       </p>
                     </div>
                     <div className="flex gap-2 items-center capitalize">
@@ -105,22 +104,6 @@ const Eventos = () => {
                         }
                       >
                         {i.status}
-                      </span>
-                      <span
-                        className={
-                          i.status === "closed"
-                            ? "invisible text-gray-500 flex w-[72px] items-center text-sm hover:text-blue-400"
-                            : "text-gray-500 flex w-[72px] items-center text-sm hover:text-blue-400 cursor-pointer"
-                        }
-                        onClick={() =>
-                          dispatch(
-                            setEventStatus(i.id, {
-                              status: "closed",
-                            })
-                          ).then(() => dispatch(getAllEvents()))
-                        }
-                      >
-                        <TiInputChecked size={18} /> Finalizar
                       </span>
                     </div>
                   </li>
@@ -146,8 +129,8 @@ const Eventos = () => {
                         <h1
                           className={
                             e.status === "active"
-                              ? "mt-2 text-3xl font-medium sm:mt-0 text-teal-600 hover:text-gray-400 hover:cursor-pointer"
-                              : "mt-2 text-3xl font-medium sm:mt-0 text-rose-600 hover:text-gray-400 hover:cursor-pointer"
+                              ? "mt-2 text-3xl font-medium sm:mt-0 text-teal-600 hover:text-gray-400 hover:cursor-pointer uppercase"
+                              : "mt-2 text-3xl font-medium sm:mt-0 text-rose-600 hover:text-gray-400 hover:cursor-pointer uppercase"
                           }
                         >
                           {e.nombre}

@@ -7,6 +7,7 @@ import Error from "../Error/Error";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { FaUsers, FaIdCard } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
 const Invitado = (props) => {
   const id = props.match.params.id;
   const tk = sessionStorage.getItem("token");
@@ -94,7 +95,7 @@ const Invitado = (props) => {
               <li className="relative grid mb-4 text-left">
                 <span className="text-gray-500 uppercase text-xs">Lista</span>
                 <span className="text-gray-700 capitalize text-base">
-                  {evento?.nombre}
+                  {invitado?.list_name ? invitado.list_name : evento?.nombre}
                 </span>
               </li>
               <li className="relative grid mb-4 text-left">

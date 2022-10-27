@@ -6,12 +6,15 @@ const { Op, where } = require("sequelize");
 
 router.post("/:id", async (req, res) => {
   let { id } = req.params;
+  const lista = req.body[0];
+  const { listName } = req.body[1];
 
   try {
-    let nuevaLista = req.body.map((i) => {
+    let nuevaLista = lista?.map((i) => {
       return {
         inv_id: i.id,
         list_id: i.list_id,
+        list_name: listName ? listName : "Invitados",
         first_name: i.first_name,
         last_name: i.last_name,
         company: i.company,
@@ -26,12 +29,8 @@ router.post("/:id", async (req, res) => {
 
     let instancia = await Invitados.bulkCreate(nuevaLista);
     let evento = await Evento.findOne({ where: { id: id } });
-    // console.log("INVITADOSSS", instancia);
-    // console.log("EVENTOOO", evento);
+
     instancia.forEach(async (i) => await i.addEvento(evento.id));
-    // let assignTypes = await Promise.all(
-    //   types.map((t) => Type.findOne({ where: { name: t } }))
-    // );
 
     return res.status(201).json(instancia);
   } catch (error) {

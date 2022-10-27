@@ -65,12 +65,12 @@ const Evento = (props) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(setEventStatus(id, { status: "closed" }));
+        dispatch(getEventDetail(id));
         Swal.fire({
           title: "Evento finalizado",
           confirmButtonText: "Ok",
           icon: "success",
         });
-        dispatch(getEventDetail(id));
       }
     });
   };
@@ -87,8 +87,8 @@ const Evento = (props) => {
           <h2
             className={
               evento?.status === "active"
-                ? "text-4xl font-semibold sm:text-4xl text-center md:text-start grid"
-                : "text-4xl font-semibold sm:text-4xl text-rose-600 text-center md:text-start grid"
+                ? "text-4xl font-semibold sm:text-4xl text-center md:text-start grid uppercase"
+                : "text-4xl font-semibold sm:text-4xl text-rose-600 text-center md:text-start grid uppercase"
             }
           >
             {evento?.nombre}
@@ -96,8 +96,8 @@ const Evento = (props) => {
             <span
               className={
                 evento?.status !== "active"
-                  ? "text-lg font-light text-rose-900"
-                  : "text-lg font-light"
+                  ? "text-sm font-light text-rose-900 uppercase"
+                  : "text-sm font-light uppercase"
               }
             >
               {evento?.cliente}
@@ -215,7 +215,7 @@ const Evento = (props) => {
                           </Link>
                         </h3>
                         <p className="uppercase font-medium text-xs text-gray-600">
-                          Invitados {evento?.nombre} -{" "}
+                          {evento?.Invitados[1]?.list_name} -{" "}
                           <span>{evento?.cliente}</span>
                         </p>
                       </div>

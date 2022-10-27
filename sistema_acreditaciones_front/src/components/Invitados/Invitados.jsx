@@ -99,10 +99,7 @@ const Invitados = (props) => {
                           className="py-4 px-2 font-medium text-gray-900 whitespace-nowrap"
                         >
                           <Link key={i.id} to={"/invitados/" + i.id}>
-                            {i.last_name.toUpperCase()},{" "}
-                            {i.first_name.length > 16
-                              ? i.first_name.slice(0, 16) + "..."
-                              : i.first_name}
+                            {i.last_name.toUpperCase()}, {i.first_name}
                           </Link>
                         </th>
                         <td className="py-4 capitalize">

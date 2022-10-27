@@ -7,15 +7,18 @@ import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { FaFileUpload } from "react-icons/fa";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const CrearLista = (props) => {
   const id = props.match.params.id;
   const tk = sessionStorage.getItem("token");
 
-  console.log(id);
-  const dispatch = useDispatch();
+  // console.log(id);
+  // const dispatch = useDispatch();
   const history = useHistory();
   const [lista, setLista] = useState([]);
+  const [listName, setListName] = useState({});
   const readUploadFile = (e) => {
     if (e.target.files) {
       const reader = new FileReader();
@@ -28,20 +31,61 @@ const CrearLista = (props) => {
         json = json.map((i) => {
           return { ...i, inv_id: parseInt(i.id) };
         });
-        console.log(json);
+        // console.log("EL YEISON", json);
         json.length !== 0 && setLista(json);
       };
 
       reader.readAsArrayBuffer(e.target.files[0]);
+      const filename = e.target.files[0]?.name.replace("_", " ");
+      const cut = filename?.indexOf(".");
+      console.log(filename);
+      filename && setListName({ listName: filename.slice(0, cut) });
     }
   };
   console.log("LA LISTA", lista);
+  console.log("EL NOMBRE", listName);
   const handleSubmit = () => {
-    if (lista.length > 0) {
-      dispatch(createList(id, lista));
-      setLista([]);
-      alert("Lista creada correctamente");
-      history.push("/eventos");
+    if (lista.length > 0 && listName) {
+      Swal.fire({
+        title: "¿Crear lista?",
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        cancelButtonText: `Cancelar`,
+        width: "300px",
+        color: "#8c8a8a",
+        confirmButtonColor: "#0d9488",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post(`http://localhost:3001/invitados/${id}`, [lista, listName])
+            .then((res) => {
+              Swal.fire({
+                title: "Lista creada correctamente",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#0d9488",
+                icon: "success",
+              }).then((result) => {
+                history.push("/eventos/" + id);
+                setLista([]);
+              });
+            })
+            .catch(function (error) {
+              Swal.fire({
+                title: "Ha ocurrido un error. Intente nuevamente.",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#e11d48",
+                icon: "error",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setLista([]);
+                  history.push("/eventos/" + id + "/listas/crear");
+                }
+                setLista([]);
+                history.push("/eventos/" + id + "/listas/crear");
+              });
+            });
+        }
+      });
     }
   };
 

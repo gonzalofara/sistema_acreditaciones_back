@@ -13,22 +13,26 @@ const Aside = ({ id, event, invitados }) => {
             <Link to={`/eventos/${id}/invitados`}>
               <div className="flex gap-2 items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
                 {event?.Invitados?.length > 0 && <IoMdListBox size={22} />}
-                <span className="mt-1 text-teal-600 hover:text-gray-400">
-                  {event?.Invitados?.length > 0
-                    ? event?.Invitados?.length
-                    : null}
+                <span className="mt-1 text-teal-600 hover:text-gray-400 uppercase text-sm">
+                  {!event?.Invitados?.length > 0
+                    ? null
+                    : event?.Invitados[0]?.list_name?.length > 20
+                    ? event?.Invitados[0]?.list_name?.slice(0, 20) + "..."
+                    : event?.Invitados[0]?.list_name}
                 </span>
               </div>
             </Link>
           ) : null}
-          <Link to={`/eventos/${id}/listas/crear`}>
-            <div className="flex gap-px items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
-              <IoMdAdd size={22} />
-              <span className="mt-px text-gray-600 hover:text-gray-700 text-base">
-                Nueva lista
-              </span>
-            </div>
-          </Link>
+          {!event?.Invitados?.length > 0 ? (
+            <Link to={`/eventos/${id}/listas/crear`}>
+              <div className="flex gap-px items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
+                <IoMdAdd size={22} />
+                <span className="mt-px text-gray-600 hover:text-gray-700 text-base">
+                  Nueva Lista
+                </span>
+              </div>
+            </Link>
+          ) : null}
         </li>
         <li className="relative text-start mt-6">
           <span className="px-6 text-gray-400 uppercase text-sm">Acciones</span>

@@ -6,6 +6,7 @@ import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import Error from "../Error/Error";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const NuevoEvento = () => {
   const tk = sessionStorage.getItem("token");
@@ -40,19 +41,34 @@ const NuevoEvento = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        dispatch(postEvents(evento));
-        Swal.fire({
-          title: "Evento creado correctamente!",
-          confirmButtonText: "Ok",
-          icon: "success",
-          width: "300px",
-          color: "#8c8a8a",
-          confirmButtonColor: "#14b8a6",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            history.back();
-          }
-        });
+        // dispatch(postEvents(evento));
+        axios
+          .post("http://localhost:3001/eventos", evento)
+          .then((res) => {
+            Swal.fire({
+              title: "Evento creado correctamente!",
+              confirmButtonText: "Ok",
+              icon: "success",
+              width: "300px",
+              color: "#8c8a8a",
+              confirmButtonColor: "#14b8a6",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                history.back();
+                setEvento({});
+              }
+              history.back();
+              setEvento({});
+            });
+          })
+          .catch(function (error) {
+            Swal.fire({
+              title: "Ha ocurrido un error. Intente nuevamente.",
+              confirmButtonText: "Ok",
+              confirmButtonColor: "#e11d48",
+              icon: "error",
+            });
+          });
       }
     });
   };
