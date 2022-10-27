@@ -9,6 +9,8 @@ import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
 import Error from "../Error/Error";
 import { BsFillArchiveFill } from "react-icons/bs";
+import { FaSearch } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 const Eventos = () => {
@@ -16,6 +18,9 @@ const Eventos = () => {
   const tk = sessionStorage.getItem("token");
   const dispatch = useDispatch();
 
+  const activos = eventos?.filter((e) => e.status === "active").length;
+  const finalizados = eventos?.filter((e) => e.status === "closed").length;
+  console.log(finalizados);
   useEffect(() => {
     dispatch(resetEventDetail());
     dispatch(getAllEvents());
@@ -33,6 +38,26 @@ const Eventos = () => {
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold sm:text-2xl text-start">Eventos</h2>
 
+          <div class="relative mt-2">
+            <label for="UserEmail" class="sr-only">
+              {" "}
+              Email{" "}
+            </label>
+
+            <input
+              type="search"
+              id="search"
+              placeholder="Buscar..."
+              class="w-full rounded-md bg-gray-50 border-gray-500 border-1 py-2 px-3 shadow-sm"
+            />
+
+            <span class="absolute inset-y-0 right-0 grid w-10 place-content-center">
+              <button type="button" class="rounded-full p-0.5 text-gray-400">
+                <span class="sr-only">Buscar</span>
+                <FaSearch />
+              </button>
+            </span>
+          </div>
           <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-12 lg:grid-cols-2 text-left">
             {eventos?.length > 0 &&
               eventos

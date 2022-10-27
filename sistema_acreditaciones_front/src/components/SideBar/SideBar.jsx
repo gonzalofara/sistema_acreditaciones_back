@@ -1,10 +1,25 @@
 import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../../assets/magnetica_rayo.png";
+import Swal from "sweetalert2";
+
 const SideBar = () => {
   const handleOut = () => {
-    sessionStorage.clear();
-    window.location.assign("/");
+    Swal.fire({
+      title: "¿Cerrar sesión?",
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+      cancelButtonText: `Cancelar`,
+      width: "300px",
+      color: "#8c8a8a",
+      confirmButtonColor: "#0d9488",
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        sessionStorage.clear();
+        window.location.assign("/");
+      }
+    });
   };
   return (
     <header>
