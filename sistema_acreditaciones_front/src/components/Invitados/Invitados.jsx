@@ -172,7 +172,7 @@ const Invitados = (props) => {
                                 setInvitadoStatus(i.id, {
                                   status: "acreditado",
                                 })
-                              )
+                              ).then(() => dispatch(getEventDetail(id)))
                             }
                           >
                             <TiInputChecked size={18} /> Acreditar
