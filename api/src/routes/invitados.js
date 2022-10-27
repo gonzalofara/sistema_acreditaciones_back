@@ -1,18 +1,17 @@
 const { Router } = require("express");
 const router = Router(); //express.Router('')
 const { Invitados, Evento } = require("../db");
-const axios = require("axios");
 const { Op, where } = require("sequelize");
 
 router.post("/:id", async (req, res) => {
   let { id } = req.params;
   const lista = req.body[0];
   const { listName } = req.body[1];
-
+  console.log(req.body);
   try {
     let nuevaLista = lista?.map((i) => {
       return {
-        inv_id: i.id,
+        inv_id: Number(i.id),
         list_id: i.list_id,
         list_name: listName ? listName : "Invitados",
         first_name: i.first_name,

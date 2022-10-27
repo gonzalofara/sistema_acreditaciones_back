@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdAdd, IoMdListBox, IoMdArrowRoundBack } from "react-icons/io";
-const Aside = ({ id, event, invitados }) => {
+const Aside = ({ id, event, invitados, nuevoInv }) => {
   return (
     <div className="w-60 invisible md:visible md:h-full md:bg-gray-100 md:px-1 absolute">
       <ul className="relative py-4">
@@ -32,7 +32,16 @@ const Aside = ({ id, event, invitados }) => {
                 </span>
               </div>
             </Link>
-          ) : null}
+          ) : (
+            <Link to={`/eventos/${id}/nuevoinvitado`}>
+              <div className="flex gap-px items-center text-sm px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out">
+                <IoMdAdd size={22} />
+                <span className="mt-px text-gray-600 hover:text-gray-700 text-base">
+                  Nuevo Invitado
+                </span>
+              </div>
+            </Link>
+          )}
         </li>
         <li className="relative text-start mt-6">
           <span className="px-6 text-gray-400 uppercase text-sm">Acciones</span>
@@ -49,7 +58,7 @@ const Aside = ({ id, event, invitados }) => {
             </div>
           </Link>
         </li>
-        {(event?.nombre || id || invitados) && (
+        {(event?.nombre || id || invitados || nuevoInv) && (
           <li className="relative text-start">
             <div
               className="flex gap-px items-center text-sm py-4 px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out"
