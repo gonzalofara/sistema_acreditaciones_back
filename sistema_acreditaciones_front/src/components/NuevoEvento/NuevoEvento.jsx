@@ -78,13 +78,15 @@ const NuevoEvento = () => {
     return <Error />;
   } else {
     return (
-      <>
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar />
         <Aside />
         <div className="grid py-4 md:ml-44">
           <div className="w-9/12 mx-auto md:text-left mb-4">
-            <h1 className="text-5xl font-semibold">Crear evento</h1>
-            <h4 className="grid text-xs">
+            <h1 className="text-5xl font-semibold dark:text-gray-100">
+              Crear evento
+            </h1>
+            <h4 className="grid text-xs dark:text-gray-300">
               <span className="text-teal-600 text-base font-semibold">
                 Datos
               </span>{" "}
@@ -94,8 +96,11 @@ const NuevoEvento = () => {
 
           <form className="grid w-9/12 mx-auto" onSubmit={handleSubmit}>
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm">
-                CLIENTE <span className="font-medium text-gray-500">*</span>
+              <h3 className="text-left font-semibold text-gray-800 dark:text-gray-300 text-sm">
+                CLIENTE{" "}
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 className="bg-gray-50 w-full py-3 rounded-xl px-2"
@@ -108,9 +113,11 @@ const NuevoEvento = () => {
             </div>
 
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm">
+              <h3 className="text-left font-semibold text-gray-800 dark:text-gray-300 text-sm">
                 NOMBRE DEL EVENTO{" "}
-                <span className="font-medium text-gray-500">*</span>
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 className="bg-gray-50 w-full py-3 rounded-xl px-2"
@@ -123,9 +130,11 @@ const NuevoEvento = () => {
             </div>
 
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase">
+              <h3 className="text-left font-semibold text-gray-800 dark:text-gray-300 text-sm uppercase">
                 Fecha de inicio{" "}
-                <span className="font-medium text-gray-500">*</span>
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 type="date"
@@ -137,7 +146,7 @@ const NuevoEvento = () => {
             </div>
 
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase">
+              <h3 className="text-left font-semibold text-gray-800 dark:text-gray-300 text-sm uppercase">
                 Fecha de cierre
               </h3>
               <input
@@ -150,7 +159,7 @@ const NuevoEvento = () => {
             </div>
 
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase">
+              <h3 className="text-left font-semibold text-gray-800 dark:text-gray-300 text-sm uppercase">
                 Direccion
               </h3>
               <input
@@ -178,14 +187,14 @@ const NuevoEvento = () => {
                 Crear
               </button>
               <Link to="/eventos">
-                <p className="bg-transparent mt-2 text-gray-600 hover:text-gray-700 hover:underline cursor-pointer">
+                <p className="bg-transparent mt-2 text-gray-600 hover:text-gray-700 dark:hover:text-gray-400 hover:underline cursor-pointer">
                   Cancelar
                 </p>
               </Link>
             </div>
           </form>
         </div>
-      </>
+      </section>
     );
   }
 };

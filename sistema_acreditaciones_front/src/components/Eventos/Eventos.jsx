@@ -55,11 +55,11 @@ const Eventos = () => {
     return <Error />;
   } else {
     return (
-      <section>
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar />
         <Aside />
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-          <h2 className="text-xl flex gap-4 font-bold sm:text-2xl text-start">
+          <h2 className="text-xl flex gap-4 font-bold sm:text-2xl text-start dark:text-gray-100">
             Eventos{" "}
             <Link to="/evento/crear">
               <span className="md:hidden flex w-[130px] gap-1 items-center justify-centerfont-normal text-sm cursor-pointer bg-blue-400 p-1 text-gray-100 rounded-md hover:bg-blue-500 hover:text-gray-50 text-center">
@@ -87,21 +87,21 @@ const Eventos = () => {
               value={search}
             />
             {showFiltered && search && filtered.length ? (
-              <ul className="block w-full bg-gray-50 rounded-lg border border-gray-200 text-gray-900">
+              <ul className="block w-full bg-gray-50 rounded-lg border border-gray-200 text-gray-900 dark:bg-gray-700 dark:border-gray-600">
                 {filtered.map((i) => (
                   <li
                     key={i.id}
-                    className="flex px-6 py-2 bg-gray-100 border-b border-gray-300 w-full justify-between text-left"
+                    className="flex px-6 py-2 bg-gray-100 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600 w-full justify-between text-left"
                   >
                     <div className="grid w-full">
                       <h3 className="w-1/3 font-semibold">
                         <Link to={"/eventos/" + i.id}>
-                          <span className="font-semibold text-teal-600">
+                          <span className="font-semibold text-teal-600 dark:text-teal-500">
                             {i.id}. {i.nombre}
                           </span>
                         </Link>
                       </h3>
-                      <p className="uppercase font-medium text-xs text-gray-600">
+                      <p className="uppercase font-medium text-xs text-gray-600 dark:text-gray-400">
                         <span>{i?.cliente}</span>
                       </p>
                     </div>
@@ -130,8 +130,8 @@ const Eventos = () => {
                     key={e.id}
                     className={
                       e.status === "active"
-                        ? "border-t-4 border-teal-600 shadow-md"
-                        : "border-t-4 border-rose-600 shadow-md"
+                        ? "border-t-4 border-teal-600 shadow-md dark:shadow-sm dark:shadow-gray-700 "
+                        : "border-t-4 border-rose-600 shadow-md dark:shadow-sm dark:shadow-gray-700 "
                     }
                   >
                     <header className="sm:grid sm:items-center ml-4 mt-2">
@@ -146,7 +146,7 @@ const Eventos = () => {
                           {e.nombre}
                         </h1>
                       </Link>
-                      <p className="uppercase font-semibold text-gray-700 text-xs">
+                      <p className="uppercase font-semibold text-gray-700 dark:text-gray-600 text-xs">
                         {e.cliente} -{" "}
                         <span className="font-semibold text-gray-500 text-xs">
                           {e.Invitados.length + " Invitados"}
@@ -154,7 +154,7 @@ const Eventos = () => {
                       </p>
                     </header>
 
-                    <p className="mt-2 ml-4 text-sm text-gray-700">
+                    <p className="mt-2 ml-4 text-sm text-gray-700 dark:text-gray-600">
                       {`Actualizado el ${e.updatedAt.slice(
                         8,
                         10
@@ -167,15 +167,15 @@ const Eventos = () => {
                     <footer
                       className={
                         e.status === "active"
-                          ? "mt-4 pl-4 py-3 bg-gray-200"
-                          : "mt-4 pl-4 py-3 bg-rose-200"
+                          ? "mt-4 pl-4 py-3 bg-gray-200 dark:bg-gray-800"
+                          : "mt-4 pl-4 py-3 bg-rose-200 dark:bg-rose-800"
                       }
                     >
                       <p
                         className={
                           e.status === "active"
-                            ? "text-xs text-gray-500 hover:cursor-pointer group hover:text-gray-700 flex gap-1 items-center w-[100px]"
-                            : "text-xs text-rose-500 hover:cursor-pointer group hover:text-rose-700 flex gap-1 items-center w-[100px]"
+                            ? "text-xs text-gray-700 hover:cursor-pointer group hover:text-gray-700 dark:hover:text-gray-500 flex gap-1 items-center w-[100px]"
+                            : "text-xs text-rose-700 hover:cursor-pointer group hover:text-rose-700 dark:hover:text-rose-200 flex gap-1 items-center w-[100px]"
                         }
                         onClick={() =>
                           dispatch(
@@ -184,7 +184,7 @@ const Eventos = () => {
                         }
                       >
                         <BsFillArchiveFill size={18} />
-                        <span className="opacity-0 group-hover:opacity-50">
+                        <span className="opacity-0 group-hover:opacity-50 dark:group-hover:opacity-100">
                           Archivar
                         </span>
                       </p>

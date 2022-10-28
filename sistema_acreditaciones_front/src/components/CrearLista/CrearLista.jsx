@@ -93,49 +93,47 @@ const CrearLista = (props) => {
     return <Error />;
   } else {
     return (
-      <div>
-        <section>
-          <SideBar />
+      <section className="dark:bg-gray-900 min-h-screen">
+        <SideBar />
 
-          <Aside id={id} />
-          <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid">
-              Crear Lista
-              <span className="text-lg font-light text-gray-600">
-                Carga de archivo
-              </span>
-            </h2>
+        <Aside id={id} />
+        <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid dark:text-gray-100">
+            Crear Lista
+            <span className="text-lg font-light text-gray-600">
+              Carga de archivo
+            </span>
+          </h2>
 
-            <div className="mt-6 grid grid-cols-1 gap-x-12 gap-y-6 text-left">
-              <div className="relative mb-6">
-                <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-gray-400 focus:text-gray-900">
-                  <BsFileEarmarkPlusFill size={20} />
-                </div>
-                <input
-                  className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-50 block w-full pl-10 p-2.5 py-4"
-                  id="upload"
-                  type="file"
-                  name="upload"
-                  onChange={readUploadFile}
-                />
+          <div className="mt-6 grid grid-cols-1 gap-x-12 gap-y-6 text-left">
+            <div className="relative mb-6">
+              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-gray-400 focus:text-gray-900">
+                <BsFileEarmarkPlusFill size={20} />
               </div>
-              <p
-                className={
-                  lista?.length > 0
-                    ? "flex gap-1 items-center justify-center bg-teal-600 w-[120px] cursor-pointer text-gray-100 py-2 px-2 rounded-md hover:bg-teal-500 hover:text-gray-50 text-center"
-                    : "flex gap-1 items-center justify-center bg-teal-600 opacity-50 w-[120px] pl-2 text-gray-300 py-2 rounded-md text-center"
-                }
-                onClick={() => lista?.length > 0 && handleSubmit()}
-              >
-                Crear lista
-                <span>
-                  <FaFileUpload size={20} />
-                </span>
-              </p>
+              <input
+                className="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-100 focus:border-blue-50 block w-full pl-10 p-2.5 py-4"
+                id="upload"
+                type="file"
+                name="upload"
+                onChange={readUploadFile}
+              />
             </div>
+            <p
+              className={
+                lista?.length > 0
+                  ? "flex gap-1 items-center justify-center bg-teal-600 w-[120px] cursor-pointer text-gray-100 py-2 px-2 rounded-md hover:bg-teal-500 hover:text-gray-50 text-center"
+                  : "flex gap-1 items-center justify-center bg-teal-600 opacity-50 w-[120px] pl-2 text-gray-300 py-2 rounded-md text-center"
+              }
+              onClick={() => lista?.length > 0 && handleSubmit()}
+            >
+              Crear lista
+              <span>
+                <FaFileUpload size={20} />
+              </span>
+            </p>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     );
   }
 };

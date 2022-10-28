@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IoMdAdd, IoMdListBox, IoMdArrowRoundBack } from "react-icons/io";
 const Aside = ({ id, event, invitados, nuevoInv }) => {
   return (
-    <div className="w-60 invisible md:visible md:h-full md:bg-gray-100 md:px-1 absolute">
+    <div className="w-60 invisible md:visible md:min-h-full md:px-1 md:dark:bg-gray-900 absolute">
       <ul className="relative py-4">
         <li
           className={event?.nombre ? "relative grid text-left mt-6" : "hidden"}

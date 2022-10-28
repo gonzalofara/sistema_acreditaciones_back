@@ -79,7 +79,7 @@ const Evento = (props) => {
     return <Error />;
   } else {
     return (
-      <section>
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar id={id} evento={evento} />
 
         <Aside id={id} event={evento} />
@@ -87,7 +87,7 @@ const Evento = (props) => {
           <h2
             className={
               evento?.status === "active"
-                ? "text-4xl font-semibold sm:text-4xl text-center md:text-start grid uppercase"
+                ? "text-4xl font-semibold sm:text-4xl text-center md:text-start grid uppercase dark:text-gray-100"
                 : "text-4xl font-semibold sm:text-4xl text-rose-600 text-center md:text-start grid uppercase"
             }
           >
@@ -97,22 +97,25 @@ const Evento = (props) => {
               className={
                 evento?.status !== "active"
                   ? "text-sm font-light text-rose-900 uppercase"
-                  : "text-sm font-light uppercase"
+                  : "text-sm font-light uppercase dark:text-gray-500"
               }
             >
-              {evento?.cliente}
+              {evento?.cliente}{" "}
+              <span className="dark:text-gray-700 text-gray-400">
+                -{evento?.fechaInicio}-
+              </span>
             </span>
           </h2>
           <nav
             aria-label="Breadcrumb"
-            className="flex mt-4 justify-center md:justify-start"
+            className="flex mt-4 justify-center md:justify-start dark:bg-gray-900"
           >
             <ol
               role="list"
-              className="flex gap-2 overflow-hidden text-gray-700"
+              className="flex gap-2 overflow-hidden text-gray-700 dark:bg-gray-900"
             >
-              <li className="flex items-center">
-                <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900">
+              <li className="flex items-center dark:bg-gray-900">
+                <p className="flex h-6 items-center bg-gray-100 dark:bg-gray-900 dark:text-gray-200 px-2 transition-colors hover:text-gray-900 dark:hover:text-gray-400">
                   <FaUsers size={20} />
 
                   <span className="ml-1.5 text-xs font-medium"> Estado </span>
@@ -120,7 +123,7 @@ const Evento = (props) => {
               </li>
 
               <li className="relative flex items-center ">
-                <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
+                <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 dark:bg-gray-900 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
 
                 <p
                   className={
@@ -134,8 +137,8 @@ const Evento = (props) => {
                   {evento?.status === "active" ? "Activo" : "Finalizado"}
                 </p>
               </li>
-              <li className="flex items-center">
-                <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900">
+              <li className="flex items-center dark:bg-gray-900">
+                <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900 dark:bg-gray-900 dark:text-gray-200 dark:hover:text-gray-400">
                   <FaUsers size={20} />
 
                   <span className="ml-1.5 text-xs font-medium">
@@ -146,7 +149,7 @@ const Evento = (props) => {
               </li>
 
               <li className="relative flex items-center">
-                <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
+                <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 dark:bg-gray-900 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
 
                 <p className="flex h-6 items-center bg-teal-500 pl-8 pr-4 text-xs font-medium transition-colors text-gray-100">
                   {evento?.Invitados?.length}
@@ -200,23 +203,25 @@ const Evento = (props) => {
                 value={search}
               />
               {showFiltered && search && filtered.length ? (
-                <ul className="block w-full bg-gray-50 rounded-lg border border-gray-200 text-gray-900">
+                <ul className="block w-full bg-gray-50 rounded-lg border border-gray-200 text-gray-900 dark:bg-gray-700 dark:border-gray-600 ">
                   {filtered.map((i) => (
                     <li
                       key={i.id}
-                      className="flex px-6 py-2 bg-gray-100 border-b border-gray-300 w-full justify-between"
+                      className="flex px-6 py-2 bg-gray-100 border-b border-gray-300 w-full justify-between dark:border-gray-600 dark:bg-gray-700"
                     >
                       <div className="grid w-full">
                         <h3 className="w-1/3 font-semibold">
                           <Link to={"/invitados/" + i.id}>
-                            <span className="font-semibold">
+                            <span className="font-semibold text-teal-500">
                               {i.id}. {i.first_name}, {i.last_name}
                             </span>
                           </Link>
                         </h3>
-                        <p className="uppercase font-medium text-xs text-gray-600">
+                        <p className="uppercase font-medium text-xs text-gray-600 dark:text-gray-400">
                           {evento?.Invitados[1]?.list_name} -{" "}
-                          <span>{evento?.cliente}</span>
+                          <span className="dark:text-gray-500">
+                            {evento?.cliente}
+                          </span>
                         </p>
                       </div>
                       <div className="flex gap-2 items-center capitalize">
@@ -233,7 +238,7 @@ const Evento = (props) => {
                           className={
                             i.status === "acreditado"
                               ? "invisible text-gray-500 flex w-[72px] items-center text-sm hover:text-blue-400"
-                              : "text-gray-500 flex w-[72px] items-center text-sm hover:text-blue-400 cursor-pointer"
+                              : "text-gray-500 dark:text-gray-400 flex w-[72px] items-center text-sm hover:text-blue-400 cursor-pointer"
                           }
                           onClick={() =>
                             dispatch(

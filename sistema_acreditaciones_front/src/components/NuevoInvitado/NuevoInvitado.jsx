@@ -122,13 +122,15 @@ const NuevoInvitado = (props) => {
     return <Error />;
   } else {
     return (
-      <>
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar />
         <Aside nuevoInv={id} />
         <div className="grid py-4 md:ml-44">
-          <div className="w-9/12 mx-auto md:text-left mb-4">
-            <h1 className="text-5xl font-semibold">Nuevo Invitado</h1>
-            <h4 className="grid text-xs">
+          <div className="w-9/12 mx-auto md:text-left mb-4 ">
+            <h1 className="text-5xl font-semibold dark:text-gray-100">
+              Nuevo Invitado
+            </h1>
+            <h4 className="grid text-xs dark:text-gray-300">
               <span className="text-teal-600 text-base font-semibold">
                 Datos
               </span>{" "}
@@ -138,8 +140,11 @@ const NuevoInvitado = (props) => {
 
           <form className="grid w-9/12 mx-auto" onSubmit={handleSubmit}>
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm">
-                NOMBRE <span className="font-medium text-gray-500">*</span>
+              <h3 className="text-left font-semibold text-gray-800 text-sm dark:text-gray-300">
+                NOMBRE{" "}
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 className="bg-gray-50 w-full py-3 rounded-xl px-2"
@@ -152,8 +157,11 @@ const NuevoInvitado = (props) => {
             </div>
 
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm">
-                APELLIDO <span className="font-medium text-gray-500">*</span>
+              <h3 className="text-left font-semibold text-gray-800 text-sm dark:text-gray-300">
+                APELLIDO{" "}
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 className="bg-gray-50 w-full py-3 rounded-xl px-2"
@@ -166,8 +174,11 @@ const NuevoInvitado = (props) => {
             </div>
 
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase">
-                EMPRESA <span className="font-medium text-gray-500">*</span>
+              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase dark:text-gray-300">
+                EMPRESA{" "}
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 type="text"
@@ -179,13 +190,17 @@ const NuevoInvitado = (props) => {
               />
             </div>
             <div className="mb-2">
-              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase">
-                ID <span className="font-medium text-gray-500">*</span>
+              <h3 className="text-left font-semibold text-gray-800 text-sm uppercase dark:text-gray-300">
+                ID{" "}
+                <span className="font-medium text-gray-500 dark:text-gray-300">
+                  *
+                </span>
               </h3>
               <input
                 type="number"
                 className="bg-gray-50 w-full py-3 rounded-xl px-2"
                 name="id"
+                min="0"
                 placeholder="ID del Invitado"
                 value={invitado.id}
                 onChange={handleChange}
@@ -214,14 +229,14 @@ const NuevoInvitado = (props) => {
                 Crear
               </button>
               <Link to={"/eventos/" + id}>
-                <p className="bg-transparent mt-2 text-gray-600 hover:text-gray-700 hover:underline cursor-pointer">
+                <p className="bg-transparent mt-2 text-gray-600 hover:text-gray-700 hover:underline dark:hover:text-gray-400 cursor-pointer">
                   Cancelar
                 </p>
               </Link>
             </div>
           </form>
         </div>
-      </>
+      </section>
     );
   }
 };

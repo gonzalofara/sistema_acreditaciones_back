@@ -25,38 +25,38 @@ const Invitado = (props) => {
     return <Error />;
   } else {
     return (
-      <section>
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar />
 
         <Aside id={id} />
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid">
-            <div>
-              <span className="uppercase">{invitado?.last_name}</span>,{" "}
+            <div className="dark:text-gray-100">
+              <span className="uppercase ">{invitado?.last_name}</span>,{" "}
               <span className="capitalize">{invitado?.first_name}</span>
             </div>
-            <span className="text-lg font-light text-gray-600 uppercase">
+            <span className="text-lg font-light text-gray-600 dark:text-gray-500 uppercase">
               {evento?.nombre}
             </span>
           </h2>
           <nav
             aria-label="Breadcrumb"
-            className="flex mt-4 justify-center md:justify-start"
+            className="flex mt-4 justify-center md:justify-start dark:bg-gray-900"
           >
             <ol
               role="list"
-              className="flex gap-2 overflow-hidden text-gray-700"
+              className="flex gap-2 overflow-hidden text-gray-700 dark:bg-gray-900"
             >
-              <li className="flex items-center">
-                <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900">
+              <li className="flex items-center dark:bg-gray-900">
+                <p className="flex h-6 items-center bg-gray-100 px-2 transition-colors hover:text-gray-900 dark:bg-gray-900 dark:text-gray-200 dark:hover:text-gray-400">
                   <FaUsers size={20} />
 
                   <span className="ml-1.5 text-xs font-medium"> Estado </span>
                 </p>
               </li>
 
-              <li className="relative flex items-center ">
-                <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
+              <li className="relative flex items-center dark:bg-gray-900">
+                <span className="absolute inset-y-0 -left-px h-6 w-4 bg-gray-100 dark:bg-gray-900 [clip-path:_polygon(0_0,_0%_100%,_100%_50%)]"></span>
 
                 <p
                   className={
@@ -94,19 +94,19 @@ const Invitado = (props) => {
             <ul className="mt-4 py-4">
               <li className="relative grid mb-4 text-left">
                 <span className="text-gray-500 uppercase text-xs">Lista</span>
-                <span className="text-gray-700 capitalize text-base">
+                <span className="text-gray-700 capitalize text-base dark:text-gray-200">
                   {invitado?.list_name ? invitado.list_name : evento?.nombre}
                 </span>
               </li>
               <li className="relative grid mb-4 text-left">
                 <span className="text-gray-500 uppercase text-xs">Id</span>
-                <span className="text-gray-700 capitalize text-base">
+                <span className="text-gray-700 capitalize text-base dark:text-gray-200">
                   {invitado?.inv_id}
                 </span>
               </li>
               <li className="relative grid mb-4 text-left">
                 <span className="text-gray-500 uppercase text-xs">Nombre</span>
-                <span className="text-gray-700 capitalize text-base">
+                <span className="text-gray-700 capitalize text-base dark:text-gray-200">
                   {invitado?.first_name}
                 </span>
               </li>
@@ -114,7 +114,7 @@ const Invitado = (props) => {
                 <span className="text-gray-500 uppercase text-xs">
                   Apellido
                 </span>
-                <span className="text-gray-700 capitalize text-base">
+                <span className="text-gray-700 capitalize text-base dark:text-gray-200">
                   {invitado?.last_name}
                 </span>
               </li>

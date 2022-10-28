@@ -41,12 +41,12 @@ const Invitados = (props) => {
     }
   };
   return (
-    <section>
+    <section className="dark:bg-gray-900 min-h-screen">
       <SideBar />
       <Aside invitados={evento?.Invitados?.length} />
       <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <div>
-          <h2 className="text-xl font-bold sm:text-4xl text-start grid">
+          <h2 className="text-xl dark:text-gray-100 font-bold sm:text-4xl text-start grid mb-2">
             {evento?.nombre}
             <span className="text-sm font-medium text-gray-600 uppercase">
               {evento.cliente}
@@ -74,8 +74,8 @@ const Invitados = (props) => {
         </div>
 
         <div className="overflow-x-auto relative mt-2">
-          <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+          <table className="w-full text-sm text-left text-gray-500 border border-gray-200 dark:border-gray-600 rounded">
+            <thead className="text-xs text-gray-700 dark:text-gray-300 uppercase bg-gray-200 dark:bg-gray-600">
               <tr>
                 <th scope="col" className="py-3 px-2">
                   Invitado
@@ -93,10 +93,13 @@ const Invitados = (props) => {
                 ? evento?.Invitados?.map((i) => {
                     n++;
                     return (
-                      <tr key={n} className="bg-white border-b">
+                      <tr
+                        key={n}
+                        className="bg-white border-b dark:border-gray-600"
+                      >
                         <th
                           scope="row"
-                          className="py-4 px-2 font-medium text-gray-900 whitespace-nowrap"
+                          className="py-4 px-2 font-medium text-gray-900 whitespace-nowrap "
                         >
                           <Link key={i.id} to={"/invitados/" + i.id}>
                             {i.last_name.toUpperCase()}, {i.first_name}

@@ -33,13 +33,13 @@ const LandingPage = () => {
 
   if (!tk) {
     return (
-      <section className="bg-gray-100 h-screen">
-        <div className="flex flex-col bg-gray-50 items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+      <section className="bg-gray-100 dark:bg-gray-900 h-screen lg:h-screen">
+        <div className="flex flex-col bg-gray-50 items-center justify-center px-6 py-8 mx-auto dark:bg-gray-900 h-full lg:h-screen lg:py-0">
           <img className="w-32 h-32" src={Logo} alt="logo" />
 
-          <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+          <div className="w-full bg-white dark:bg-slate-800 dark:shadow-gray-700 rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-100 md:text-2xl">
                 Iniciar sesión
                 <span className={showError ? "visible" : "hidden"}>
                   {error}
@@ -49,7 +49,7 @@ const LandingPage = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 "
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200 "
                   >
                     Email
                   </label>
@@ -66,7 +66,7 @@ const LandingPage = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200"
                   >
                     Contraseña
                   </label>

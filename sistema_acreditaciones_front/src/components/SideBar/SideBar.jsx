@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { IoMdArrowRoundBack, IoMdAdd } from "react-icons/io";
+import { IoMdArrowRoundBack, IoMdAdd, IoMdListBox } from "react-icons/io";
 import logo from "../../assets/magnetica_rayo.png";
 import Swal from "sweetalert2";
 
@@ -39,15 +39,15 @@ const SideBar = ({ evento, id }) => {
          md:py-0
          px-4
          text-lg text-gray-700
-         bg-[#f3f3f3]
          shadow-sm
+         dark:border-b dark:border-gray-800 dark:shadow-none dark:bg-gray-900
        "
       >
         <div>
           <a href="/general" className="flex items-center content-center gap-1">
             <img src={logo} className="w-[45px] h-[45px]" />
 
-            <span className="text-gray-900 text-base font-extrabold">
+            <span className="text-gray-900 text-base font-extrabold dark:text-gray-200">
               Acreditaciones
             </span>
           </a>
@@ -104,16 +104,28 @@ const SideBar = ({ evento, id }) => {
               </li>
             ) : null}
             {evento?.Invitados?.length && id ? (
-              <li>
-                <p className="text-xs text-gray-400 mt-2">ACCIONES</p>
-                <a
-                  className="md:p-4 flex items-center justify-center text-center gap-1 py-2 block text-gray-500 hover:text-teal-500"
-                  href={`/eventos/${id}/nuevoinvitado`}
-                >
-                  <span>Nuevo Invitado</span>
-                  <IoMdAdd />
-                </a>
-              </li>
+              <div>
+                <li>
+                  <p className="text-xs text-gray-400 mt-2">LISTA</p>
+                  <a
+                    className="md:p-4 flex items-center justify-center text-center gap-1 py-2 block text-teal-600 hover:text-teal-500"
+                    href={`/eventos/${id}/invitados`}
+                  >
+                    <span>{evento.Invitados[0].list_name}</span>
+                    <IoMdListBox size={20} />
+                  </a>
+                </li>
+                <li>
+                  <p className="text-xs text-gray-400 mt-2">ACCIONES</p>
+                  <a
+                    className="md:p-4 flex items-center justify-center text-center gap-1 py-2 block text-gray-500 hover:text-teal-500"
+                    href={`/eventos/${id}/nuevoinvitado`}
+                  >
+                    <span>Nuevo Invitado</span>
+                    <IoMdAdd />
+                  </a>
+                </li>
+              </div>
             ) : null}
 
             <li className="">

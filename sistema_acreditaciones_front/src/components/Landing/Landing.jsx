@@ -5,7 +5,7 @@ import Logo from "../../assets/magnetica_rayo.png";
 const Landing = () => {
   const tk = sessionStorage.getItem("token");
   return (
-    <section className="bg-gray-100 text-gray-700">
+    <section className="bg-gray-100 text-gray-700 dark:bg-gray-900 h-full lg:h-screen">
       <div className="flex items-center justify-center m-0 p-0 lg:hidden">
         <img src={Logo} alt="logo" className="h-56" />
       </div>

@@ -27,11 +27,13 @@ const Archivo = () => {
     return <Error />;
   } else {
     return (
-      <section>
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar />
         <ArchivoAside />
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold sm:text-2xl text-start">Archivo</h2>
+          <h2 className="text-xl font-bold sm:text-2xl text-start dark:text-gray-100">
+            Archivo
+          </h2>
 
           <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-12 lg:grid-cols-2 text-left">
             {eventos?.length
@@ -40,8 +42,8 @@ const Archivo = () => {
                     key={e.id}
                     className={
                       e.status === "active"
-                        ? "border-t-4 border-teal-600 shadow-md"
-                        : "border-t-4 border-rose-600 shadow-md"
+                        ? "border-t-4 border-teal-600 shadow-md dark:shadow-sm dark:shadow-gray-700"
+                        : "border-t-4 border-rose-600 shadow-md dark:shadow-sm dark:shadow-gray-700"
                     }
                   >
                     <header className="sm:grid sm:items-center ml-4 mt-2">
@@ -56,7 +58,7 @@ const Archivo = () => {
                           {e.nombre}
                         </h1>
                       </Link>
-                      <p className="uppercase font-semibold text-gray-700 text-xs">
+                      <p className="uppercase font-semibold text-gray-700 dark:text-gray-600 text-xs">
                         {e.cliente} -{" "}
                         <span className="font-semibold text-gray-500 text-xs">
                           {e.Invitados.length + " Invitados"}
@@ -64,7 +66,7 @@ const Archivo = () => {
                       </p>
                     </header>
 
-                    <p className="mt-2 ml-4 text-sm text-gray-700">
+                    <p className="mt-2 ml-4 text-sm text-gray-700 dark:text-gray-600">
                       {`Actualizado el ${e.updatedAt.slice(
                         8,
                         10
@@ -77,15 +79,15 @@ const Archivo = () => {
                     <footer
                       className={
                         e.status === "active"
-                          ? "mt-4 pl-4 py-3 bg-gray-200"
-                          : "mt-4 pl-4 py-3 bg-rose-200"
+                          ? "mt-4 pl-4 py-3 bg-gray-200 dark:bg-gray-800"
+                          : "mt-4 pl-4 py-3 bg-rose-200 dark:bg-rose-800"
                       }
                     >
                       <p
                         className={
                           e.status === "active"
-                            ? "text-xs text-gray-500 hover:cursor-pointer group hover:text-gray-700 flex gap-1 items-center w-[100px]"
-                            : "text-xs text-rose-400 hover:cursor-pointer group hover:text-rose-600 flex gap-1 items-center w-[100px]"
+                            ? "text-xs text-gray-500 hover:cursor-pointer group hover:text-gray-700 dark:hover:text-gray-500 flex gap-1 items-center w-[100px]"
+                            : "text-xs text-rose-400 hover:cursor-pointer group hover:text-rose-600 dark:text-rose-400 dark:hover:text-rose-300 flex gap-1 items-center w-[100px]"
                         }
                         onClick={() =>
                           dispatch(
