@@ -80,7 +80,7 @@ const Evento = (props) => {
   } else {
     return (
       <section>
-        <SideBar />
+        <SideBar id={id} evento={evento} />
 
         <Aside id={id} event={evento} />
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">

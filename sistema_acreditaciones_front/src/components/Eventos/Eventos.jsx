@@ -11,6 +11,9 @@ import Aside from "../Aside/Aside";
 import Error from "../Error/Error";
 import { BsFillArchiveFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import { MdOutlineAddCircle } from "react-icons/md";
+
 import Swal from "sweetalert2";
 
 const Eventos = () => {
@@ -56,7 +59,14 @@ const Eventos = () => {
         <SideBar />
         <Aside />
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold sm:text-2xl text-start">Eventos</h2>
+          <h2 className="text-xl flex gap-4 font-bold sm:text-2xl text-start">
+            Eventos{" "}
+            <Link to="/evento/crear">
+              <span className="md:hidden flex w-[130px] gap-1 items-center justify-centerfont-normal text-sm cursor-pointer bg-blue-400 p-1 text-gray-100 rounded-md hover:bg-blue-500 hover:text-gray-50 text-center">
+                <MdOutlineAddCircle size={20} fill="#f8fafc" /> Crear evento
+              </span>
+            </Link>
+          </h2>
 
           <div className="relative mt-2">
             <span
