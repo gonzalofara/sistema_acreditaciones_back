@@ -7,13 +7,18 @@ import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { FaFileUpload } from "react-icons/fa";
 import SideBar from "../SideBar/SideBar";
 import Aside from "../Aside/Aside";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const CrearLista = (props) => {
   const id = props.match.params.id;
-  console.log(id);
-  const dispatch = useDispatch();
+  const tk = sessionStorage.getItem("token");
+
+  // console.log(id);
+  // const dispatch = useDispatch();
   const history = useHistory();
   const [lista, setLista] = useState([]);
+  const [listName, setListName] = useState({});
   const readUploadFile = (e) => {
     if (e.target.files) {
       const reader = new FileReader();
@@ -26,30 +31,74 @@ const CrearLista = (props) => {
         json = json.map((i) => {
           return { ...i, inv_id: parseInt(i.id) };
         });
-        console.log(json);
+        // console.log("EL YEISON", json);
         json.length !== 0 && setLista(json);
       };
 
       reader.readAsArrayBuffer(e.target.files[0]);
+      const filename = e.target.files[0]?.name.replace("_", " ");
+      const cut = filename?.indexOf(".");
+      console.log(filename);
+      filename && setListName({ listName: filename.slice(0, cut) });
     }
   };
   console.log("LA LISTA", lista);
+  console.log("EL NOMBRE", listName);
   const handleSubmit = () => {
-    if (lista.length > 0) {
-      dispatch(createList(id, lista));
-      setLista([]);
-      alert("Lista creada correctamente");
-      history.push("/eventos");
+    if (lista.length > 0 && listName) {
+      Swal.fire({
+        title: "¿Crear lista?",
+        showCancelButton: true,
+        confirmButtonText: "Crear",
+        cancelButtonText: `Cancelar`,
+        width: "300px",
+        color: "#8c8a8a",
+        confirmButtonColor: "#0d9488",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post(`http://localhost:3001/invitados/${id}`, [lista, listName])
+            .then((res) => {
+              Swal.fire({
+                title: "Lista creada correctamente",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#0d9488",
+                icon: "success",
+              }).then((result) => {
+                history.push("/eventos/" + id);
+                setLista([]);
+              });
+            })
+            .catch(function (error) {
+              Swal.fire({
+                title: "Ha ocurrido un error. Intente nuevamente.",
+                confirmButtonText: "Ok",
+                confirmButtonColor: "#e11d48",
+                icon: "error",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  setLista([]);
+                  history.push("/eventos/" + id + "/listas/crear");
+                }
+                setLista([]);
+                history.push("/eventos/" + id + "/listas/crear");
+              });
+            });
+        }
+      });
     }
   };
-  return (
-    <div>
-      <section>
+
+  if (!tk) {
+    return <Error />;
+  } else {
+    return (
+      <section className="dark:bg-gray-900 min-h-screen">
         <SideBar />
 
         <Aside id={id} />
         <div className="md:ml-60 mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid">
+          <h2 className="text-4xl font-semibold sm:text-4xl text-center md:text-start grid dark:text-gray-100">
             Crear Lista
             <span className="text-lg font-light text-gray-600">
               Carga de archivo
@@ -85,31 +134,8 @@ const CrearLista = (props) => {
           </div>
         </div>
       </section>
-
-      {/* <form>
-        <label
-          class="block mb-2 text-sm font-medium text-gray-900"
-          htmlFor="upload"
-        >
-          Upload file
-        </label>
-        <input
-          class="block w-9/12 mx-auto md:w-1/2 md:mx-auto text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none mb-4"
-          id="upload"
-          type="file"
-          name="upload"
-          onChange={readUploadFile}
-        />
-
-        <p
-          className=" w-1/4 sm:w-1/6 py-2 text-gray-400 hover:text-gray-100 mx-auto cursor-pointer rounded bg-teal-800 hover:bg-teal-600"
-          onClick={() => handleSubmit()}
-        >
-          Crear Lista
-        </p>
-      </form> */}
-    </div>
-  );
+    );
+  }
 };
 
 export default CrearLista;

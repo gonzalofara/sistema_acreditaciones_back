@@ -1,64 +1,101 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdOutlineAlternateEmail } from "react-icons/md";
+import Logo from "../../assets/magnetica_rayo.png";
+import axios from "axios";
+import Landing from "../Landing/Landing";
+
 const LandingPage = () => {
-  return (
-    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-lg text-center">
-        <h1 className="text-2xl font-bold sm:text-3xl">Acreditaciones</h1>
+  const [input, setInput] = useState({ email: "", password: "" });
+  const [showError, setShowError] = useState(false);
+  const [error, setError] = useState("");
 
-        <p className="mt-4 text-gray-500">
-          Inicia sesión para acceder al panel principal y administrar tus
-          eventos!
-        </p>
-      </div>
+  const tk = sessionStorage.getItem("token");
+  const handleChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
-      <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
-        <div>
-          <label for="email" className="sr-only">
-            Email
-          </label>
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { email, password } = input;
 
-          <div className="relative">
-            <input
-              type="email"
-              className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm text-gray-300 shadow-sm"
-              placeholder="Email"
-            />
+    axios
+      .post("http://localhost:3001/login", { email, password })
+      .then(async (res) => {
+        const { token } = res.data;
+        sessionStorage.setItem("token", token);
+        console.log(token);
+        window.location.assign("/general");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-            <span className="absolute inset-y-0 right-4 inline-flex items-center text-gray-400">
-              <MdOutlineAlternateEmail size={22} />
-            </span>
+  if (!tk) {
+    return (
+      <section className="bg-gray-100 dark:bg-gray-900 h-screen lg:h-screen">
+        <div className="flex flex-col bg-gray-50 items-center justify-center px-6 py-8 mx-auto dark:bg-gray-900 h-full lg:h-screen lg:py-0">
+          <img className="w-32 h-32" src={Logo} alt="logo" />
+
+          <div className="w-full bg-white dark:bg-slate-800 dark:shadow-gray-700 rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-100 md:text-2xl">
+                Iniciar sesión
+                <span className={showError ? "visible" : "hidden"}>
+                  {error}
+                </span>
+              </h1>
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200 "
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                    placeholder="nombre@empresa.com"
+                    required={true}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-200"
+                  >
+                    Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    required={true}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full text-white bg-violet-400 hover:bg-violet-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Ingresar
+                </button>
+              </form>
+            </div>
           </div>
         </div>
-
-        <div>
-          <label for="password" className="sr-only">
-            Contraseña
-          </label>
-          <div className="relative">
-            <input
-              type="password"
-              className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm text-gray-300 shadow-sm"
-              placeholder="Contraseña"
-            />
-
-            <span className="absolute inset-y-0 right-4 inline-flex items-center text-gray-400">
-              <MdOutlineAlternateEmail size={22} />
-            </span>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-center">
-          <div
-            className="inline-block rounded-lg bg-teal-600 hover:bg-teal-500 px-14 py-3 text-sm font-medium text-gray-50 cursor-pointer"
-            onClick={() => location.assign("/general")}
-          >
-            Ingresar
-          </div>
-        </div>
-      </form>
-    </div>
-  );
+      </section>
+    );
+  } else {
+    return <Landing />;
+  }
 };
 
 export default LandingPage;
