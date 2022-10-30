@@ -10,6 +10,8 @@ import Invitados from "./components/Invitados/Invitados";
 import Invitado from "./components/Invitado/Invitado";
 import Archivo from "./components/Archivo/Archivo";
 import Landing from "./components/Landing/Landing";
+import Error from "./components/Error/Error";
+import NuevoInvitado from "./components/NuevoInvitado/NuevoInvitado";
 import "./App.css";
 
 function App() {
@@ -23,6 +25,11 @@ function App() {
           <Route exact path="/eventos" component={Eventos} />
           <Route exact path="/eventos/:id" component={Evento} />
           <Route exact path="/eventos/:id/invitados" component={Invitados} />
+          <Route
+            exact
+            path="/eventos/:id/nuevoinvitado"
+            component={NuevoInvitado}
+          />
           <Route exact path="/invitados/:id" component={Invitado} />
           <Route
             exact
@@ -31,6 +38,7 @@ function App() {
           />
           <Route exact path="/evento/crear" component={NuevoEvento} />
           <Route exact path="/archivo" component={Archivo} />
+          <Route path="*" component={Error} />
         </Switch>
       </div>
     </BrowserRouter>

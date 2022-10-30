@@ -3,7 +3,7 @@ import React from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
 const ArchivoAside = () => {
   return (
-    <div className="w-60 invisible md:visible md:h-full md:bg-gray-100 md:px-1 absolute">
+    <div className="w-60 invisible md:visible md:h-full md:dark:bg-gray-900 md:px-1 absolute">
       <ul className="relative py-4">
         <li className="relative grid text-left mt-6">
           <span className="px-6 text-gray-400 uppercase text-sm">Acciones</span>

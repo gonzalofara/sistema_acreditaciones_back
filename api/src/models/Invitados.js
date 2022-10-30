@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         unique: false,
       },
+      list_name: {
+        type: DataTypes.STRING,
+        unique: false,
+      },
       first_name: {
         type: DataTypes.STRING,
         allowNull: false,
