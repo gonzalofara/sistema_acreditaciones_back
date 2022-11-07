@@ -31,8 +31,9 @@ const CrearLista = (props) => {
         json = json.map((i) => {
           return { ...i, inv_id: parseInt(i.id) };
         });
-        // console.log("EL YEISON", json);
+        console.log("EL YEISON", json);
         json.length !== 0 && setLista(json);
+        console.log(json);
       };
 
       reader.readAsArrayBuffer(e.target.files[0]);
