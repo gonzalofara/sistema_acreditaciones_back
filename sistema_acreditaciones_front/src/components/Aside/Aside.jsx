@@ -1,7 +1,12 @@
 import React from "react";
 import * as XLSX from "xlsx";
 import { Link } from "react-router-dom";
-import { IoMdAdd, IoMdListBox, IoMdArrowRoundBack } from "react-icons/io";
+import {
+  IoMdAdd,
+  IoMdListBox,
+  IoMdArrowRoundBack,
+  IoMdDownload,
+} from "react-icons/io";
 const Aside = ({ id, event, invitados, nuevoInv }) => {
   const nuevaLista = [
     {
@@ -87,14 +92,14 @@ const Aside = ({ id, event, invitados, nuevoInv }) => {
           </Link>
 
           <div
-            className="flex gap-px items-center text-sm py-4 px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out"
+            className="flex gap-px items-center text-sm py-4 px-6 h-10 overflow-hidden text-teal-500 text-ellipsis whitespace-nowrap rounded hover:text-teal-400 hover:bg-gray-200 transition duration-300 ease-in-out cursor-pointer"
             data-mdb-ripple="true"
             data-mdb-ripple-color="dark"
             onClick={() => crearLista()}
           >
-            <IoMdAdd size={22} />
+            <IoMdDownload size={22} />
             <span className="mt-px text-gray-600 hover:text-gray-700 text-base">
-              Crear lista
+              Lista en blanco
             </span>
           </div>
         </li>
